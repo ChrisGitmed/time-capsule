@@ -6,9 +6,6 @@ export default class CapsuleCreationView extends React.Component {
     return (
       <>
         <CapsuleCreationForm/>
-        <div className="row justify-center">
-          <button className="submit-button">Submit</button>
-        </div>
       </>
     );
   }
