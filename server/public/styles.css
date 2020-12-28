@@ -1,5 +1,11 @@
+p {
+  font-size: 0.8rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
 nav {
-  padding: 0 3rem 0 3rem;
+  padding: 0 2rem 0 2rem;
+  margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,4 +18,32 @@ nav {
   max-width: 1000px;
   margin: auto;
   background-color: #e1e5f2;
+  min-height: 100vh;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  padding: 2rem;
+  width: 70%;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.drag-drop-field {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 5px;
+  background-color: #e1e5f2;
+}
+
+.row {
+  width: 100%;
+}
+
+.justify-center {
+  justify-content: center;
 }
