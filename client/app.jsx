@@ -5,7 +5,7 @@ import CapsuleCreationForm from './pages/capsule-creation-form';
 export default class App extends React.Component {
   render() {
     return (
-      <div className="container">
+      <div className="page-container">
         <Navbar />
         <CapsuleCreationForm />
       </div>

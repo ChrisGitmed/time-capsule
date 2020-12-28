@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class CapsuleCreationForm extends React.Component {
+export default class CapsuleCreationView extends React.Component {
   render() {
     return (
       <form>
