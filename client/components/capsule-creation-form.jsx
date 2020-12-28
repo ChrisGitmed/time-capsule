@@ -7,7 +7,9 @@ export default class CapsuleCreationForm extends React.Component {
         <div className="row drag-drop-field">
           <p>Upload your files here.</p>
         </div>
-
+        <div className="row justify-flex-end">
+          <button className="upload-button">Upload</button>
+        </div>
       </form>
     );
   }

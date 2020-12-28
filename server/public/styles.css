@@ -1,6 +1,11 @@
+p,
+button {
+  color: #022b3a;
+  font-family: 'Open Sans', sans-serif;
+}
+
 p {
   font-size: 0.8rem;
-  font-family: 'Open Sans', sans-serif;
 }
 
 nav {
@@ -33,17 +38,29 @@ nav {
 }
 
 .drag-drop-field {
-  display: flex;
   justify-content: center;
   padding: 2rem;
   border-radius: 5px;
   background-color: #e1e5f2;
 }
 
+.upload-button {
+  width: 5.75rem;
+  height: 1.5rem;
+  background-color: #bfdbf7;
+  border: none;
+  border-radius: 5px;
+}
+
 .row {
   width: 100%;
+  display: flex;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-flex-end {
+  justify-content: flex-end;
 }
