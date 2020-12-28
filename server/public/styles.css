@@ -1,0 +1,12 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+nav {
+  border: 1px solid blue;
+  padding: 0 3rem 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
