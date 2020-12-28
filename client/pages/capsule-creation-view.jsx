@@ -4,7 +4,12 @@ import CapsuleCreationForm from '../components/capsule-creation-form';
 export default class CapsuleCreationView extends React.Component {
   render() {
     return (
-      <CapsuleCreationForm/>
+      <>
+        <CapsuleCreationForm/>
+        <div className="row justify-center">
+          <button className="submit-button">Submit</button>
+        </div>
+      </>
     );
   }
 }
