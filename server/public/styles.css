@@ -8,6 +8,18 @@ p {
   font-size: 0.8rem;
 }
 
+button {
+  border: none;
+  background-color: #bfdbf7;
+  transition: 0.2s;
+}
+
+button:hover {
+  color: #e1e5f2;
+  background-color: #1f7a8c;
+  transition: 0.2s;
+}
+
 nav {
   padding: 0 2rem 0 2rem;
   margin-bottom: 3rem;
@@ -35,6 +47,7 @@ nav {
   width: 70%;
   border-radius: 10px;
   background-color: #fff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
 }
 
 .drag-drop-field {
@@ -47,8 +60,6 @@ nav {
 .upload-button {
   width: 5.5rem;
   height: 1.5rem;
-  background-color: #bfdbf7;
-  border: none;
   border-radius: 5px;
 }
 
@@ -56,10 +67,9 @@ nav {
   margin: 4rem;
   width: 8rem;
   height: 2rem;
-  border: none;
   border-radius: 10px;
   font-size: 1rem;
-  background-color: #bfdbf7;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
 }
 
 .row {
