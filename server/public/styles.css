@@ -1,11 +1,14 @@
-.container {
-  max-width: 1000px;
-  margin: auto;
-}
-
 nav {
   padding: 0 3rem 0 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Proza Libre', sans-serif;
+  background-color: #022b3a;
+  color: #bfdbf7;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
 }

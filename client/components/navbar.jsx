@@ -7,7 +7,6 @@ export default class Navbar extends React.Component {
         <h1>
           Time Capsule
         </h1>
-
       </nav>
     );
   }
