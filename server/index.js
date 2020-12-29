@@ -1,46 +1,35 @@
 require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
+const S3 = require('aws-sdk/clients/s3');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
 
 const app = express();
+const s3 = new S3({
+  apiVersion: '2006-03-01',
+  region: 'us-west-1'
+});
 
-const jsonMiddleware = express.json();
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'lfztimecapsule',
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString());
+    }
+  })
+});
 
 app.use(staticMiddleware);
 
-app.use(jsonMiddleware);
-
-app.post('/api', (req, res, next) => {
-
-  const S3 = require('aws-sdk/clients/s3');
-
-  const s3 = new S3({
-    apiVersion: '2006-03-01',
-    region: 'us-west-1'
-  });
-
-  const uploadParams = { Bucket: 'lfztimecapsule', Key: '', Body: '' };
-  const { file } = req.body;
-
-  const fs = require('fs');
-  const fileStream = fs.createReadStream(file);
-  fileStream.on('error', function (err) {
-    // console.log('File Error', err);
-    if (err) throw err;
-  });
-  uploadParams.Body = fileStream;
-  const path = require('path');
-  uploadParams.Key = path.basename(file);
-
-  s3.upload(uploadParams, function (err, data) {
-    if (err) {
-      throw (err);
-    } if (data) {
-      // console.log('upload successful');
-      res.status(200).send();
-    }
-  });
-
+app.post('/api/uploads', upload.single('file'), function (req, res, next) {
+  // eslint-disable-next-line no-console
+  console.log('Upload successful');
+  res.status(200).send();
 });
 
 app.listen(process.env.PORT, () => {
