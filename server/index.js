@@ -4,7 +4,11 @@ const staticMiddleware = require('./static-middleware');
 
 const app = express();
 
+const jsonMiddleware = express.json();
+
 app.use(staticMiddleware);
+
+app.use(jsonMiddleware);
 
 app.post('/api', (req, res, next) => {
 
