@@ -8,11 +8,12 @@ app.use(staticMiddleware);
 
 app.post('/api', (req, res, next) => {
 
-  const AWS = require('aws-sdk');
+  const S3 = require('aws-sdk/clients/s3');
 
-  AWS.config.update({ region: 'us-west-1' });
-
-  const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+  const s3 = new S3({
+    apiVersion: '2006-03-01',
+    region: 'us-west-1'
+  });
 
   const uploadParams = { Bucket: 'lfztimecapsule', Key: '', Body: '' };
   const file = 'hello.txt';
