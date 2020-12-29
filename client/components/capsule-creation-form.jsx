@@ -8,6 +8,11 @@ export default class CapsuleCreationForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const req = {
+      method: 'POST'
+    };
+    fetch('/api', req);
+
   }
 
   render() {
