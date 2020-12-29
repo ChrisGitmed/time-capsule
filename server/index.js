@@ -8,7 +8,6 @@ app.use(staticMiddleware);
 
 app.post('/api', (req, res, next) => {
 
-  /*
   const AWS = require('aws-sdk');
 
   AWS.config.update({ region: 'us-west-1' });
@@ -21,7 +20,8 @@ app.post('/api', (req, res, next) => {
   const fs = require('fs');
   const fileStream = fs.createReadStream(file);
   fileStream.on('error', function (err) {
-    console.log('File Error', err);
+    // console.log('File Error', err);
+    if (err) throw err;
   });
   uploadParams.Body = fileStream;
   const path = require('path');
@@ -29,12 +29,14 @@ app.post('/api', (req, res, next) => {
 
   s3.upload(uploadParams, function (err, data) {
     if (err) {
-      console.log('Error', err);
+      // console.log('Error', err);
+      throw (err);
     } if (data) {
-      console.log('Upload Success', data.Location);
+      // console.log('Upload Success', data.Location);
+      res.status(200).send();
     }
   });
-  */
+
   res.status(200).send();
 });
 
