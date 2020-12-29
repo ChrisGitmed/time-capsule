@@ -3,13 +3,20 @@ import React from 'react';
 export default class CapsuleCreationForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      fileName: 'hello.txt'
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const req = {
-      method: 'POST'
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
     };
     fetch('/api', req);
 
