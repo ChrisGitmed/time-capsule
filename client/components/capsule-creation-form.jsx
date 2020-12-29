@@ -1,10 +1,19 @@
 import React from 'react';
 
 export default class CapsuleCreationForm extends React.Component {
-  render() {
-    return (
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-      <form>
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  render() {
+    const { handleSubmit } = this;
+    return (
+      <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div className="row drag-drop-field">
           <p>Upload your files here.</p>
