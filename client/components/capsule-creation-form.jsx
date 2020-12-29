@@ -7,6 +7,8 @@ export default class CapsuleCreationForm extends React.Component {
       file: 'hello.txt'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
   }
 
   handleSubmit(event) {
@@ -25,12 +27,27 @@ export default class CapsuleCreationForm extends React.Component {
       });
   }
 
+  handleDrop(event) {
+    // console.log('file dropped');
+    event.preventDefault();
+  }
+
+  handleDragOver(event) {
+    // console.log('File in drop zone.');
+    event.preventDefault();
+  }
+
   render() {
-    const { handleSubmit } = this;
+    const {
+      handleSubmit,
+      handleDragOver,
+      handleDrop
+    } = this;
+
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container">
-          <div className="row drag-drop-field">
+          <div className="row drag-drop-field" onDrop={handleDrop} onDragOver={handleDragOver}>
             <p>Upload your files here.</p>
           </div>
           <div className="row justify-flex-end">
