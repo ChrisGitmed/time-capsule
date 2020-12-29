@@ -11,10 +11,13 @@ export default class CapsuleCreationForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const form = new FormData(event.target);
+    // const form = new FormData(event.target);
     const req = {
       method: 'POST',
-      body: form
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
     };
     fetch('/api', req)
       .then(res => {
@@ -23,7 +26,6 @@ export default class CapsuleCreationForm extends React.Component {
       .catch(err => {
         if (err) throw err;
       });
-
   }
 
   render() {

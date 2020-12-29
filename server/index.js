@@ -36,6 +36,7 @@ app.post('/api', (req, res, next) => {
     if (err) {
       throw (err);
     } if (data) {
+      // console.log('upload successful');
       res.status(200).send();
     }
   });
