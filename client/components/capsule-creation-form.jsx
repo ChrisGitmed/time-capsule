@@ -28,12 +28,18 @@ export default class CapsuleCreationForm extends React.Component {
   }
 
   handleDrop(event) {
-    // console.log('file dropped');
     event.preventDefault();
+
+    if (event.dataTransfer.items) {
+      if (event.dataTransfer.items[0].kind === 'file') {
+        const file = event.dataTransfer.items[0].getAsFile();
+        // eslint-disable-next-line no-console
+        console.log('file: ', file);
+      }
+    }
   }
 
   handleDragOver(event) {
-    // console.log('File in drop zone.');
     event.preventDefault();
   }
 
