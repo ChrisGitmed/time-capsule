@@ -6,7 +6,7 @@ const app = express();
 
 app.use(staticMiddleware);
 
-app.post('/api', (req, res, next) => {
+app.post('/upload', (req, res, next) => {
   res.status(200).send();
 });
 

@@ -11,7 +11,7 @@ export default class CapsuleCreationForm extends React.Component {
     const req = {
       method: 'POST'
     };
-    fetch('/api', req);
+    fetch('/upload', req);
 
   }
 
