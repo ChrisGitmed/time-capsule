@@ -11,14 +11,18 @@ export default class CapsuleCreationForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const form = new FormData(event.target);
     const req = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
+      body: form
     };
-    fetch('/api', req);
+    fetch('/api', req)
+      .then(res => {
+        event.target.reset();
+      })
+      .catch(err => {
+        if (err) throw err;
+      });
 
   }
 
@@ -28,11 +32,11 @@ export default class CapsuleCreationForm extends React.Component {
       <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div className="row drag-drop-field">
-          <p>Upload your files here.</p>
-        </div>
-        <div className="row justify-flex-end">
-          <button className="upload-button">Upload</button>
-        </div>
+            <p>Upload your files here.</p>
+          </div>
+          <div className="row justify-flex-end">
+            <input type="file" name="file"/>
+          </div>
         </div>
         <div className="row justify-center">
           <button className="submit-button">Submit</button>

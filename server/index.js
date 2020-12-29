@@ -34,15 +34,12 @@ app.post('/api', (req, res, next) => {
 
   s3.upload(uploadParams, function (err, data) {
     if (err) {
-      // console.log('Error', err);
       throw (err);
     } if (data) {
-      // console.log('Upload Success', data.Location);
       res.status(200).send();
     }
   });
 
-  res.status(200).send();
 });
 
 app.listen(process.env.PORT, () => {
