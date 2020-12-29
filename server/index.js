@@ -20,8 +20,7 @@ app.post('/api', (req, res, next) => {
   });
 
   const uploadParams = { Bucket: 'lfztimecapsule', Key: '', Body: '' };
-  // console.log('req.body: ', req.body);
-  const file = 'hello.txt';
+  const { file } = req.body;
 
   const fs = require('fs');
   const fileStream = fs.createReadStream(file);

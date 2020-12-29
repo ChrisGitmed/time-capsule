@@ -4,7 +4,7 @@ export default class CapsuleCreationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileName: 'hello.txt'
+      file: 'hello.txt'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
