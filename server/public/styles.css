@@ -3,12 +3,14 @@
 }
 
 p,
-button {
+button,
+label {
   color: #022b3a;
   font-family: 'Open Sans', sans-serif;
 }
 
-p {
+p,
+label {
   font-size: 0.8rem;
 }
 
@@ -59,11 +61,24 @@ nav {
   height: 5rem;
   justify-content: center;
   align-items: center;
-  text-align: center;
   padding: 2rem;
+  cursor: pointer;
+}
+
+.recipient-section {
+  margin-top: 1rem;
+}
+
+.recipient-label {
+  padding-right: 1rem;
+}
+
+.input-box {
+  width: 100%;
   border-radius: 5px;
   background-color: #e1e5f2;
-  cursor: pointer;
+  border: none;
+  text-align: center;
 }
 
 .submit-button {
@@ -94,8 +109,4 @@ nav {
 
 .align-center {
   align-items: center;
-}
-
-.wrap {
-  flex-wrap: wrap;
 }

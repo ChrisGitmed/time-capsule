@@ -82,14 +82,14 @@ export default class CapsuleCreationForm extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container">
-          <div className="row drop-zone" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
+          <div className="row drop-zone input-box" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
             {dropZoneText}
           </div>
           <input required ref={fileInput} className="hidden" type="file" name="file" onChange={handleChange}/>
 
-          <div className="row wrap">
-            <label className="row" htmlFor="recipient">Recipient:</label>
-            <input className="row" required classtype="email" name="recipient" />
+          <div className="row recipient-section">
+            <label className="recipient-label" htmlFor="recipient">Recipient:</label>
+            <input required className="input-box" type="email" name="recipient" placeholder="john@example.com"/>
           </div>
 
         </div>
