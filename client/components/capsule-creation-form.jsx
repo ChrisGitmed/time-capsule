@@ -28,6 +28,9 @@ export default class CapsuleCreationForm extends React.Component {
       });
   }
 
+  handleClick(event) {
+  }
+
   handleDrop(event) {
     event.preventDefault();
     if (event.dataTransfer.items &&
@@ -46,13 +49,14 @@ export default class CapsuleCreationForm extends React.Component {
       handleSubmit,
       handleDragOver,
       handleDrop,
+      handleClick,
       fileInput
     } = this;
 
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container">
-          <div className="row drag-drop-field" onDrop={handleDrop} onDragOver={handleDragOver}>
+          <div className="row drop-zone" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
             <p>Upload your files here.</p>
           </div>
           <div className="row justify-flex-end">

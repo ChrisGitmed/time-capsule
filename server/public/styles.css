@@ -50,7 +50,7 @@ nav {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
 }
 
-.drag-drop-field {
+.drop-zone {
   justify-content: center;
   padding: 2rem;
   border-radius: 5px;
