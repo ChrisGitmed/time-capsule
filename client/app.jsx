@@ -1,8 +1,14 @@
 import React from 'react';
-import Home from './pages/home';
+import Navbar from './components/navbar';
+import CapsuleCreationForm from './components/capsule-creation-form';
 
 export default class App extends React.Component {
   render() {
-    return <Home />;
+    return (
+      <div className="page-container">
+        <Navbar />
+        <CapsuleCreationForm />
+      </div>
+    );
   }
 }
