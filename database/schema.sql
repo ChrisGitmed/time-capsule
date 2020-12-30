@@ -9,7 +9,7 @@ create schema "public";
 CREATE TABLE "capsules" (
 	"capsuleId" serial NOT NULL,
 	"recipient" TEXT NOT NULL,
-	"content" TEXT,
+	"content" TEXT NOT NULL,
 	"sendAfter" timestamp with time zone,
 	"isDownloaded" bool,
 	"userId" int ,
