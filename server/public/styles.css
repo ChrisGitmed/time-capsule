@@ -95,3 +95,7 @@ nav {
 .align-center {
   align-items: center;
 }
+
+.wrap {
+  flex-wrap: wrap;
+}

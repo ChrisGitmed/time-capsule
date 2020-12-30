@@ -86,6 +86,12 @@ export default class CapsuleCreationForm extends React.Component {
             {dropZoneText}
           </div>
           <input required ref={fileInput} className="hidden" type="file" name="file" onChange={handleChange}/>
+
+          <div className="row wrap">
+            <label className="row" htmlFor="recipient">Recipient:</label>
+            <input className="row" required classtype="email" name="recipient" />
+          </div>
+
         </div>
 
         <div className="row justify-center">
