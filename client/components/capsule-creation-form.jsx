@@ -11,6 +11,7 @@ export default class CapsuleCreationForm extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -47,12 +48,20 @@ export default class CapsuleCreationForm extends React.Component {
     event.preventDefault();
   }
 
+  handleChange(event) {
+    const fileInput = this.fileInput.current;
+    this.setState({
+      file: fileInput.files[0].name
+    });
+  }
+
   render() {
     const {
       handleSubmit,
       handleDragOver,
       handleDrop,
       handleClick,
+      handleChange,
       fileInput
     } = this;
 
@@ -61,9 +70,10 @@ export default class CapsuleCreationForm extends React.Component {
         <div className="form-container">
           <div className="row drop-zone" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
             <p>Upload your files here.</p>
+            <p>{this.state.file}</p>
           </div>
           <div className="row justify-flex-end">
-            <input required ref={fileInput} type="file" name="file"/>
+            <input required ref={fileInput} type="file" name="file" onChange={handleChange}/>
           </div>
         </div>
         <div className="row justify-center">
