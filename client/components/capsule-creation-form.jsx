@@ -10,6 +10,7 @@ export default class CapsuleCreationForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSubmit(event) {
