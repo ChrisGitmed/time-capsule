@@ -33,15 +33,15 @@ app.use(staticMiddleware);
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   // eslint-disable-next-line no-console
   console.log('upload successful');
-
   const { recipient } = req.body;
-
+  const { location } = req.file;
   const sql = `
-    insert into "capsules" (recipient)
-         values ($1)
+    insert into "capsules" (recipient, content)
+         values ($1,
+                 $2)
       returning *;
   `;
-  const params = [recipient];
+  const params = [recipient, location];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);
