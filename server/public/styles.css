@@ -52,6 +52,8 @@ nav {
 
 .drop-zone {
   justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
   padding: 2rem;
   border-radius: 5px;
   background-color: #e1e5f2;
@@ -70,6 +72,10 @@ nav {
   border-radius: 10px;
   font-size: 1rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
+}
+
+.green-text {
+  color: darkgreen;
 }
 
 .row {

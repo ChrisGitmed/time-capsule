@@ -68,12 +68,17 @@ export default class CapsuleCreationForm extends React.Component {
       fileInput
     } = this;
 
+    const { fileName } = this.state;
+
+    let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
+    if (fileName !== '') {
+      dropZoneText = <p className="green-text">{fileName}</p>;
+    }
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div className="row drop-zone" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
-            <p>Upload your files here.</p>
-            <p>{this.state.fileName}</p>
+            {dropZoneText}
           </div>
           <div className="row justify-flex-end">
             <input required ref={fileInput} type="file" name="file" onChange={handleChange}/>
