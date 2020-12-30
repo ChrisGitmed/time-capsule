@@ -28,7 +28,7 @@ app.use(staticMiddleware);
 
 app.post('/api/uploads', upload.single('file'), function (req, res, next) {
   // eslint-disable-next-line no-console
-  console.log('Upload successful');
+  console.log('upload successful');
   res.status(200).send();
 });
 

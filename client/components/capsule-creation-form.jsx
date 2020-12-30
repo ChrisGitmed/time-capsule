@@ -4,8 +4,9 @@ export default class CapsuleCreationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: 'hello.txt'
+      file: ''
     };
+    this.fileInput = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
@@ -29,12 +30,10 @@ export default class CapsuleCreationForm extends React.Component {
 
   handleDrop(event) {
     event.preventDefault();
-
     if (event.dataTransfer.items) {
       if (event.dataTransfer.items[0].kind === 'file') {
-        const file = event.dataTransfer.items[0].getAsFile();
-        // eslint-disable-next-line no-console
-        console.log('file: ', file);
+        const fileInput = this.fileInput.current;
+        fileInput.files = event.dataTransfer.files;
       }
     }
   }
@@ -47,7 +46,8 @@ export default class CapsuleCreationForm extends React.Component {
     const {
       handleSubmit,
       handleDragOver,
-      handleDrop
+      handleDrop,
+      fileInput
     } = this;
 
     return (
@@ -57,7 +57,7 @@ export default class CapsuleCreationForm extends React.Component {
             <p>Upload your files here.</p>
           </div>
           <div className="row justify-flex-end">
-            <input type="file" name="file"/>
+            <input required ref={fileInput} type="file" name="file"/>
           </div>
         </div>
         <div className="row justify-center">
