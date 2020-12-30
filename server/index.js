@@ -31,8 +31,6 @@ const upload = multer({
 app.use(staticMiddleware);
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
-  // eslint-disable-next-line no-console
-  console.log('upload successful');
   const { recipient } = req.body;
   const { location } = req.file;
   const sql = `
