@@ -30,11 +30,10 @@ export default class CapsuleCreationForm extends React.Component {
 
   handleDrop(event) {
     event.preventDefault();
-    if (event.dataTransfer.items) {
-      if (event.dataTransfer.items[0].kind === 'file') {
-        const fileInput = this.fileInput.current;
-        fileInput.files = event.dataTransfer.files;
-      }
+    if (event.dataTransfer.items &&
+        event.dataTransfer.items[0].kind === 'file') {
+      const fileInput = this.fileInput.current;
+      fileInput.files = event.dataTransfer.files;
     }
   }
 
