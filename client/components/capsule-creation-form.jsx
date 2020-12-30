@@ -4,7 +4,7 @@ export default class CapsuleCreationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: ''
+      fileName: ''
     };
     this.fileInput = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,7 +51,7 @@ export default class CapsuleCreationForm extends React.Component {
   handleChange(event) {
     const fileInput = this.fileInput.current;
     this.setState({
-      file: fileInput.files[0].name
+      fileName: fileInput.files[0].name
     });
   }
 
