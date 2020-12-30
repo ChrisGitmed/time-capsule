@@ -41,6 +41,9 @@ export default class CapsuleCreationForm extends React.Component {
         event.dataTransfer.items[0].kind === 'file') {
       const fileInput = this.fileInput.current;
       fileInput.files = event.dataTransfer.files;
+      this.setState({
+        fileName: fileInput.files[0].name
+      });
     }
   }
 
@@ -70,7 +73,7 @@ export default class CapsuleCreationForm extends React.Component {
         <div className="form-container">
           <div className="row drop-zone" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
             <p>Upload your files here.</p>
-            <p>{this.state.file}</p>
+            <p>{this.state.fileName}</p>
           </div>
           <div className="row justify-flex-end">
             <input required ref={fileInput} type="file" name="file" onChange={handleChange}/>
