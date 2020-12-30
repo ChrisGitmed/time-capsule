@@ -3,12 +3,14 @@
 }
 
 p,
-button {
+button,
+label {
   color: #022b3a;
   font-family: 'Open Sans', sans-serif;
 }
 
-p {
+p,
+label {
   font-size: 0.8rem;
 }
 
@@ -55,15 +57,28 @@ nav {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
 }
 
+.input-box {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #e1e5f2;
+  border: none;
+  text-align: center;
+}
+
 .drop-zone {
   height: 5rem;
   justify-content: center;
   align-items: center;
-  text-align: center;
   padding: 2rem;
-  border-radius: 5px;
-  background-color: #e1e5f2;
   cursor: pointer;
+}
+
+.recipient-section {
+  margin-top: 1rem;
+}
+
+.recipient-label {
+  padding-right: 1rem;
 }
 
 .submit-button {
