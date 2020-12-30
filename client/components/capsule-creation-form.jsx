@@ -30,6 +30,8 @@ export default class CapsuleCreationForm extends React.Component {
   }
 
   handleClick(event) {
+    const fileInput = this.fileInput.current;
+    fileInput.click();
   }
 
   handleDrop(event) {
