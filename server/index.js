@@ -33,7 +33,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: 'cgitmed@gmail.com',
-    pass: 'alwaysmakingnewpasswords'
+    pass: ''
   }
 });
 
@@ -63,15 +63,29 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
                       background-color: #E1E5F2">
             <div style="background-color: #022B3A;
                         text-align: center;
-                        padding: 1rem">
+                        padding: 1rem;
+                        margin-bottom: 4rem;">
               <h1 style="color: #BFDBF7">
                 Time Capsule
               </h1>
             </div>
 
-            <div style="margin: auto">
-              <a href="${location}">Download link</a>
+            <div style="display: flex;
+                        flex-wrap: wrap;">
+              <div style="width: 100%;
+                          display: flex;">
+                <div style="width: 65%;
+                            margin: auto;
+                            background-color: white;
+                            text-align: center;
+                            border-radius: 10px;
+                            padding: 1rem;"
+                  <p>Someone sent you a capsule!<br>
+                     Click to download.</p>
+                </div>
+              </div>
             </div>
+            <a href="${location}">Download link</a>
           <div>
         `
       })
