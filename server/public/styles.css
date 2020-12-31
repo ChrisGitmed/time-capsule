@@ -63,6 +63,7 @@ nav {
 
 .input-box {
   width: 100%;
+  height: 1.5rem;
   border-radius: 5px;
   background-color: #e1e5f2;
   border: none;
@@ -79,6 +80,7 @@ nav {
 
 .recipient-section {
   margin-top: 1rem;
+  align-items: center;
 }
 
 .recipient-label {
