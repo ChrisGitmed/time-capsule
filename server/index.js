@@ -56,7 +56,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
     .then(
       transporter.sendMail({
         from: '<cgitmed@gmail.com>',
-        to: 'cgitmed@gmail.com',
+        to: recipient,
         subject: 'Is this working?',
         html: '<h1>Hello world!<h1>'
       })
