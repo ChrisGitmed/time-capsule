@@ -58,7 +58,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
         from: '<cgitmed@gmail.com>',
         to: recipient,
         subject: 'Is this working?',
-        html: '<h1>Hello world!<h1>'
+        html: `<a href="${location}">Download link</a>`
       })
     )
     .catch(err => next(err));
