@@ -26,6 +26,7 @@ export default class CapsuleCreationForm extends React.Component {
         event.target.reset();
       })
       .then(
+        event.target.reset(),
         this.setState({
           fileName: ''
         })
