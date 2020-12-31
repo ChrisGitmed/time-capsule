@@ -33,7 +33,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: 'cgitmed@gmail.com',
-    pass: ''
+    pass: 'alwaysmakingnewpasswords'
   }
 });
 
@@ -60,11 +60,11 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
         subject: 'Someone sent you a file!',
         html: `
           <div style="height: 100vh;
-                      background-color: #E1E5F2">
+                      background-color: #E1E5F2;
+                      text-align: center">
             <div style="background-color: #022B3A;
                         text-align: center;
-                        padding: 1rem;
-                        margin-bottom: 4rem;">
+                        padding: 1rem;">
               <h1 style="color: #BFDBF7">
                 Time Capsule
               </h1>
@@ -75,7 +75,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
               <div style="width: 100%;
                           display: flex;">
                 <div style="width: 65%;
-                            margin: auto;
+                            margin: 4rem auto 2rem auto;
                             background-color: white;
                             text-align: center;
                             border-radius: 10px;
@@ -99,6 +99,8 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
                 </div>
               </div>
             </div>
+            <p><em style="font-size: 11px">Visit me here</em><br>
+               <em style="font-size: 11px">See how I work here</em></p>
           <div>
         `
       })
