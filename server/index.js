@@ -33,7 +33,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: 'cgitmed@gmail.com',
-    pass: ''
+    pass: 'alwaysmakingnewpasswords'
   }
 });
 
@@ -57,8 +57,23 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
       transporter.sendMail({
         from: '<cgitmed@gmail.com>',
         to: recipient,
-        subject: 'Is this working?',
-        html: `<a href="${location}">Download link</a>`
+        subject: 'Someone sent you a file!',
+        html: `
+          <div style="height: 100vh;
+                      background-color: #E1E5F2">
+            <div style="background-color: #022B3A;
+                        text-align: center;
+                        padding: 1rem">
+              <h1 style="color: #BFDBF7">
+                Time Capsule
+              </h1>
+            </div>
+
+            <div style="margin: auto">
+              <a href="${location}">Download link</a>
+            </div>
+          <div>
+        `
       })
     )
     .catch(err => next(err));
