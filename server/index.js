@@ -85,13 +85,13 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
                     Click to download.
                   </p>
 
-                  <div class="row" style="width: 100%;
-                                                  display: flex">
-                    <div class="dlbox" style="width: 40%;
-                                              margin: 1rem auto;
-                                              background-color: #E1E5F2;
-                                              border-radius: 5px;
-                                              padding: 1rem;">
+                  <div style="width: 100%;
+                              display: flex">
+                    <div style="width: 40%;
+                                margin: 1rem auto;
+                                background-color: #E1E5F2;
+                                border-radius: 5px;
+                                padding: 1rem;">
                       <a href="${location}">Download link</a>
                     </div>
                   </div>
