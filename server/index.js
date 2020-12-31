@@ -79,13 +79,26 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
                             background-color: white;
                             text-align: center;
                             border-radius: 10px;
-                            padding: 1rem;"
-                  <p>Someone sent you a capsule!<br>
-                     Click to download.</p>
+                            padding: 1.5rem 1rem;"
+                  <p>
+                    Someone sent you a capsule!<br>
+                    Click to download.
+                  </p>
+
+                  <div class="row" style="width: 100%;
+                                                  display: flex">
+                    <div class="dlbox" style="width: 40%;
+                                              margin: 1rem auto;
+                                              background-color: #E1E5F2;
+                                              border-radius: 5px;
+                                              padding: 1rem;">
+                      <a href="${location}">Download link</a>
+                    </div>
+                  </div>
+                  <em style="font-size: 11px">Sent from a bot. Please do not respond</em>
                 </div>
               </div>
             </div>
-            <a href="${location}">Download link</a>
           <div>
         `
       })
