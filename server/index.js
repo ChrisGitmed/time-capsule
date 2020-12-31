@@ -5,6 +5,7 @@ const staticMiddleware = require('./static-middleware');
 const S3 = require('aws-sdk/clients/s3');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const s3 = new S3({
@@ -14,7 +15,6 @@ const s3 = new S3({
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
-
 const upload = multer({
   storage: multerS3({
     s3: s3,
@@ -26,6 +26,15 @@ const upload = multer({
       cb(null, Date.now().toString());
     }
   })
+});
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'cgitmed@gmail.com',
+    pass: ''
+  }
 });
 
 app.use(staticMiddleware);
@@ -44,6 +53,14 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
     .then(result => {
       res.status(201).json(result.rows[0]);
     })
+    .then(
+      transporter.sendMail({
+        from: '<cgitmed@gmail.com>',
+        to: 'cgitmed@gmail.com',
+        subject: 'Is this working?',
+        html: '<h1>Hello world!<h1>'
+      })
+    )
     .catch(err => next(err));
 });
 
