@@ -79,7 +79,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
                             background-color: white;
                             text-align: center;
                             border-radius: 10px;
-                            padding: 1.5rem 1rem;"
+                            padding: 1.5rem 1rem;">
                   <p>
                     Someone sent you a capsule!<br>
                     Click to download.
