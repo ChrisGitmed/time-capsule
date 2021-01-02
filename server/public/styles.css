@@ -83,15 +83,23 @@ nav {
   align-items: center;
 }
 
-.recipient-label {
-  padding-right: 1rem;
-}
-
 .date-section,
 .time-section {
-  width: 50%;
   display: flex;
   align-items: center;
+}
+
+.date-section {
+  width: 50%;
+  padding-right: 0.5rem;
+}
+
+.time-section {
+  width: 50%;
+}
+
+.pad-right {
+  padding-right: 0.5rem;
 }
 
 .submit-button {
@@ -118,6 +126,10 @@ nav {
 
 .justify-flex-end {
   justify-content: flex-end;
+}
+
+.justify-space-between {
+  justify-content: space-between;
 }
 
 .align-center {
