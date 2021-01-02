@@ -90,12 +90,11 @@ nav {
 }
 
 .date-section {
-  width: 50%;
-  padding-right: 0.5rem;
+  width: 47%;
 }
 
 .time-section {
-  width: 50%;
+  width: 47%;
 }
 
 .pad-right {
@@ -134,4 +133,21 @@ nav {
 
 .align-center {
   align-items: center;
+}
+
+@supports ( width: 100%) {
+  @media screen and (max-width: 400px) {
+    .date-section,
+    .time-section {
+      width: 100%;
+    }
+
+    .time-section {
+      padding-top: 1rem;
+    }
+
+    .wrap-if-small {
+      flex-wrap: wrap;
+    }
+  }
 }
