@@ -90,7 +90,7 @@ export default class CapsuleCreationForm extends React.Component {
             <label className="pad-right" htmlFor="recipient">Recipient:</label>
             <input required className="input-box" type="email" name="recipient" placeholder="john@example.com"/>
           </div>
-          <div className="row justify-space-between wrap-if-small">
+          <div className="date-time-row justify-space-between unwrap-if-large">
             <div className="date-section">
               <input required className="input-box" type="date" name="date"/>
             </div>

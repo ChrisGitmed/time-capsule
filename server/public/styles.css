@@ -89,16 +89,23 @@ nav {
   align-items: center;
 }
 
+.date-time-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .date-section {
-  width: 47%;
+  width: 100%;
 }
 
 .time-section {
-  width: 47%;
+  width: 100%;
+  padding-top: 1rem;
 }
 
 .pad-right {
-  padding-right: 0.5rem;
+  padding-right: 1rem;
 }
 
 .submit-button {
@@ -135,19 +142,19 @@ nav {
   align-items: center;
 }
 
-@supports ( width: 100%) {
-  @media screen and (max-width: 400px) {
+@supports ( width: 50%) {
+  @media screen and (min-width: 550px) {
     .date-section,
     .time-section {
-      width: 100%;
+      width: 48%;
     }
 
     .time-section {
-      padding-top: 1rem;
+      padding-top: 0;
     }
 
-    .wrap-if-small {
-      flex-wrap: wrap;
+    .unwrap-if-large {
+      flex-wrap: nowrap;
     }
   }
 }
