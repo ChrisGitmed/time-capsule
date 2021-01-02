@@ -73,7 +73,6 @@ export default class CapsuleCreationForm extends React.Component {
       handleChange,
       fileInput
     } = this;
-
     const { fileName } = this.state;
 
     let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
@@ -91,7 +90,6 @@ export default class CapsuleCreationForm extends React.Component {
             <label className="pad-right" htmlFor="recipient">Recipient:</label>
             <input required className="input-box" type="email" name="recipient" placeholder="john@example.com"/>
           </div>
-
           <div className="row justify-space-between wrap-if-small">
             <div className="date-section">
               <input required className="input-box" type="date" name="date"/>
@@ -101,7 +99,6 @@ export default class CapsuleCreationForm extends React.Component {
             </div>
           </div>
         </div>
-
         <div className="row justify-center">
           <button className="submit-button">Submit</button>
         </div>
