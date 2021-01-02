@@ -8,7 +8,6 @@ const multerS3 = require('multer-s3');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const jsonMiddleware = express.json();
 const s3 = new S3({
   apiVersion: '2006-03-01',
   region: 'us-west-1'
@@ -39,7 +38,6 @@ const transporter = nodemailer.createTransport({
 });
 
 app.use(staticMiddleware);
-app.use(jsonMiddleware);
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const {
