@@ -95,11 +95,11 @@ export default class CapsuleCreationForm extends React.Component {
           <div className="row justify-space-between">
             <div className="date-section">
               <label className="pad-right" htmlFor="date">Date:</label>
-              <input className="input-box" type="date" name="date"/>
+              <input required className="input-box" type="date" name="date"/>
             </div>
             <div className="time-section">
               <label className="pad-right" htmlFor="time">Time:</label>
-              <input className="input-box" type="time" name="time" />
+              <input required className="input-box" type="time" name="time" />
             </div>
           </div>
         </div>
