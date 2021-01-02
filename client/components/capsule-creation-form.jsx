@@ -92,9 +92,11 @@ export default class CapsuleCreationForm extends React.Component {
           </div>
           <div className="date-time-row justify-space-between unwrap-if-large">
             <div className="date-section">
+              <label className="pad-right" htmlFor="date">Date: </label>
               <input required className="input-box" type="date" name="date"/>
             </div>
             <div className="time-section">
+              <label className="pad-right" htmlFor="time">Time: </label>
               <input required className="input-box" type="time" name="time" />
             </div>
           </div>
