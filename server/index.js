@@ -61,7 +61,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const sendDate = JSON.stringify(new Date(year, month, day, hour, minute));
 
   const sql = `
-    insert into "capsules" (recipient, content, send)
+    insert into "capsules" (recipient, content, "sendOn")
          values ($1,
                  $2,
                  $3)
