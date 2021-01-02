@@ -8,6 +8,7 @@ const multerS3 = require('multer-s3');
 const nodemailer = require('nodemailer');
 
 const app = express();
+const jsonMiddleware = express.json();
 const s3 = new S3({
   apiVersion: '2006-03-01',
   region: 'us-west-1'
@@ -38,10 +39,30 @@ const transporter = nodemailer.createTransport({
 });
 
 app.use(staticMiddleware);
+app.use(jsonMiddleware);
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
-  const { recipient } = req.body;
+  const {
+    recipient,
+    date,
+    time
+  } = req.body;
   const { location } = req.file;
+
+  const dateArray = date.split('-');
+  const timeArray = time.split(':');
+  const [
+    year,
+    month,
+    day
+  ] = dateArray;
+  const [
+    hour,
+    minute
+  ] = timeArray;
+  const sendDate = JSON.stringify(new Date(year, month, day, hour, minute));
+  // eslint-disable-next-line no-console
+  console.log('sendDate: ', sendDate);
   const sql = `
     insert into "capsules" (recipient, content)
          values ($1,
