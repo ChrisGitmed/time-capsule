@@ -40,15 +40,34 @@ const transporter = nodemailer.createTransport({
 app.use(staticMiddleware);
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
-  const { recipient } = req.body;
+  const {
+    recipient,
+    date,
+    time
+  } = req.body;
   const { location } = req.file;
+
+  const dateArray = date.split('-');
+  const timeArray = time.split(':');
+  const [
+    year,
+    month,
+    day
+  ] = dateArray;
+  const [
+    hour,
+    minute
+  ] = timeArray;
+  const sendDate = JSON.stringify(new Date(year, month, day, hour, minute));
+
   const sql = `
-    insert into "capsules" (recipient, content)
+    insert into "capsules" (recipient, content, send)
          values ($1,
-                 $2)
+                 $2,
+                 $3)
       returning *;
   `;
-  const params = [recipient, location];
+  const params = [recipient, location, sendDate];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);

@@ -79,12 +79,33 @@ nav {
 }
 
 .recipient-section {
-  margin-top: 1rem;
+  margin: 1rem 0;
   align-items: center;
 }
 
-.recipient-label {
-  padding-right: 1rem;
+.date-section,
+.time-section {
+  display: flex;
+  align-items: center;
+}
+
+.date-time-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.date-section {
+  width: 100%;
+}
+
+.time-section {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.pad-right {
+  padding-right: 0.4rem;
 }
 
 .submit-button {
@@ -113,6 +134,27 @@ nav {
   justify-content: flex-end;
 }
 
+.justify-space-between {
+  justify-content: space-between;
+}
+
 .align-center {
   align-items: center;
+}
+
+@supports ( width: 50%) {
+  @media screen and (min-width: 570px) {
+    .date-section,
+    .time-section {
+      width: 48%;
+    }
+
+    .time-section {
+      padding-top: 0;
+    }
+
+    .unwrap-if-large {
+      flex-wrap: nowrap;
+    }
+  }
 }

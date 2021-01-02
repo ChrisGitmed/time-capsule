@@ -73,7 +73,6 @@ export default class CapsuleCreationForm extends React.Component {
       handleChange,
       fileInput
     } = this;
-
     const { fileName } = this.state;
 
     let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
@@ -88,11 +87,20 @@ export default class CapsuleCreationForm extends React.Component {
           </div>
           <input required ref={fileInput} className="hidden" type="file" name="file" onChange={handleChange}/>
           <div className="row recipient-section">
-            <label className="recipient-label" htmlFor="recipient">Recipient:</label>
+            <label className="pad-right" htmlFor="recipient">Recipient:</label>
             <input required className="input-box" type="email" name="recipient" placeholder="john@example.com"/>
           </div>
+          <div className="date-time-row justify-space-between unwrap-if-large">
+            <div className="date-section">
+              <label className="pad-right" htmlFor="date">Date: </label>
+              <input required className="input-box" type="date" name="date"/>
+            </div>
+            <div className="time-section">
+              <label className="pad-right" htmlFor="time">Time: </label>
+              <input required className="input-box" type="time" name="time" />
+            </div>
+          </div>
         </div>
-
         <div className="row justify-center">
           <button className="submit-button">Submit</button>
         </div>

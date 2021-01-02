@@ -10,7 +10,7 @@ CREATE TABLE "capsules" (
 	"capsuleId" serial NOT NULL,
 	"recipient" TEXT NOT NULL,
 	"content" TEXT NOT NULL,
-	"sendAfter" timestamp with time zone,
+	"send" timestamp with time zone NOT NULL,
 	"isDownloaded" bool,
 	"userId" int ,
 	CONSTRAINT "capsules_pk" PRIMARY KEY ("capsuleId")
