@@ -79,12 +79,19 @@ nav {
 }
 
 .recipient-section {
-  margin-top: 1rem;
+  margin: 1rem 0;
   align-items: center;
 }
 
 .recipient-label {
   padding-right: 1rem;
+}
+
+.date-section,
+.time-section {
+  width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .submit-button {

@@ -88,8 +88,19 @@ export default class CapsuleCreationForm extends React.Component {
           </div>
           <input required ref={fileInput} className="hidden" type="file" name="file" onChange={handleChange}/>
           <div className="row recipient-section">
-            <label className="recipient-label" htmlFor="recipient">Recipient:</label>
+            <label className="pad-right" htmlFor="recipient">Recipient:</label>
             <input required className="input-box" type="email" name="recipient" placeholder="john@example.com"/>
+          </div>
+
+          <div className="row">
+            <div className="date-section">
+              <label className="" htmlFor="date">Date:</label>
+              <input className="input-box" type="date" name="date"/>
+            </div>
+            <div className="time-section">
+              <label className="" htmlFor="time">Time:</label>
+              <input className="input-box" type="time" name="time" />
+            </div>
           </div>
         </div>
 
