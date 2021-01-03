@@ -21,7 +21,6 @@ let sql = `
     from capsules
    where ("sendOn" < now() AND "sentAt" IS NULL)
 `;
-
 db.query(sql)
   .then(res => {
     for (let i = 0; i < res.rows.length; i++) {
@@ -44,7 +43,6 @@ db.query(sql)
                 Time Capsule
               </h1>
             </div>
-
             <div style="display: flex;
                         flex-wrap: wrap;">
               <div style="width: 100%;
@@ -59,7 +57,6 @@ db.query(sql)
                     Someone sent you a capsule!<br>
                     Click to download.
                   </p>
-
                   <div style="width: 100%;
                               display: flex">
                     <div style="width: 40%;
