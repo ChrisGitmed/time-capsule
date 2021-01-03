@@ -6,22 +6,18 @@ const db = new pg.Pool({
 });
 
 const sql = `
-  select (recipient, content, "sendOn")
+  select (recipient, content)
     from capsules
     where "sendOn" < now()
 `;
 
 db.query(sql)
   .then(res => {
-    for (let i = 0; i < res.rows.length; i++) {
-      /*
-      const rowAsArr = res.rows[i].row.split(',');
-      const recipient = rowAsArr[0].substring(1);
-      const location = rowAsArr[1];
-      const time = rowAsArr[2].substring(0, rowAsArr[2].length - 1);
-      console.log('time: ', time);
-      */
-    }
+    // for (let i = 0; i < res.rows.length; i++) {
+    // const rowAsArr = res.rows[i].row.split(',');
+    // const recipient = rowAsArr[0].substring(1);
+    // const location = rowAsArr[1].substring(0, rowAsArr.length - 1);
+    // }
   })
   .catch(err => {
     throw (err);
