@@ -13,7 +13,10 @@ const s3 = new S3({
   region: 'us-west-1'
 });
 const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 const upload = multer({
   storage: multerS3({
