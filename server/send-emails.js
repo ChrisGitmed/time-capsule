@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 let sql = `
   select (recipient, content, "capsuleId")
     from capsules
-   where "sendOn" < now()
+   where ("sendOn" < now() AND "sentAt" IS NULL)
 `;
 
 db.query(sql)
