@@ -16,11 +16,16 @@ const sql = `
 db.query(sql)
   .then(res => {
     for (let i = 0; i < res.rows.length; i++) {
-      // const rowAsArr = res.rows[i].row.split(',');
-      // const recipient = rowAsArr[0].substring(1);
-      // console.log('recipient: ', recipient);
-      // const location = rowAsArr[1].substring(0, rowAsArr[1].length - 1);
-      // console.log('location: ', location);
+      /*
+      const rowAsArr = res.rows[i].row.split(',');
+      console.log('rowAsArr: ', rowAsArr);
+      const recipient = rowAsArr[0].substring(1);
+      console.log('recipient: ', recipient);
+      const location = rowAsArr[1];
+      console.log('location: ', location);
+      const time = rowAsArr[2].substring(0, rowAsArr[2].length - 1);
+      console.log('time: ', time);
+      */
     }
 
   })
