@@ -6,12 +6,6 @@ const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-const sql = `
-  select (recipient, content)
-    from capsules
-    where "sendOn" < now()
-`;
-
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 465,
@@ -22,12 +16,19 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+let sql = `
+  select (recipient, content, "capsuleId")
+    from capsules
+   where "sendOn" < now()
+`;
+
 db.query(sql)
   .then(res => {
     for (let i = 0; i < res.rows.length; i++) {
       const rowAsArr = res.rows[i].row.split(',');
       const recipient = rowAsArr[0].substring(1);
-      const location = rowAsArr[1].substring(0, rowAsArr.length - 1);
+      const location = rowAsArr[1];
+      const capsuleId = rowAsArr[2].substring(0, rowAsArr[2].length - 1);
       transporter.sendMail({
         from: '<cgitmed@gmail.com>',
         to: recipient,
@@ -77,7 +78,19 @@ db.query(sql)
                <em style="font-size: 11px">See how I work here</em></p>
           <div>
         `
-      });
+      })
+        .then(() => {
+          sql = `
+            update capsules
+               set "sentAt" = now()
+             where "capsuleId" = $1;
+          `;
+          const params = [capsuleId];
+          db.query(sql, params)
+            .catch(err => {
+              throw (err);
+            });
+        });
     }
   })
   .catch(err => {
