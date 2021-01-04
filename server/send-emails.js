@@ -32,7 +32,7 @@ db.query(sql)
       const location = rowAsArr[1];
       const capsuleId = rowAsArr[2].substring(0, rowAsArr[2].length - 1);
       transporter.sendMail({
-        from: '<cgitmed@gmail.com>',
+        from: process.env.EMAIL_FROM,
         to: recipient,
         subject: 'Someone sent you a file!',
         html: `
