@@ -60,6 +60,10 @@ app.post('/api/auth/sign-up', (req, res, next) => {
 });
 
 app.post('/api/auth/sign-in', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.status(401).json({ error: 'invalid login' });
+  }
   res.status(200).send();
 });
 
