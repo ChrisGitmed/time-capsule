@@ -20,17 +20,18 @@ const transporter = nodemailer.createTransport({
 });
 
 let sql = `
-  select (recipient, content, "capsuleId")
+  select recipient, content, "capsuleId"
     from capsules
    where ("sendOn" < now() AND "sentAt" IS NULL)
 `;
 db.query(sql)
   .then(res => {
     for (let i = 0; i < res.rows.length; i++) {
-      const rowAsArr = res.rows[i].row.split(',');
-      const recipient = rowAsArr[0].substring(1);
-      const location = rowAsArr[1];
-      const capsuleId = rowAsArr[2].substring(0, rowAsArr[2].length - 1);
+      const {
+        recipient,
+        content,
+        capsuleId
+      } = res.rows[i];
       transporter.sendMail({
         from: process.env.EMAIL_FROM,
         to: recipient,
@@ -67,7 +68,7 @@ db.query(sql)
                                 background-color: #E1E5F2;
                                 border-radius: 5px;
                                 padding: 1rem;">
-                      <a href="${location}">Download link</a>
+                      <a href="${content}">Download link</a>
                     </div>
                   </div>
                   <em style="font-size: 11px">Sent from a bot. Please do not respond</em>
