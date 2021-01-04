@@ -2,6 +2,7 @@ require('dotenv/config');
 const pg = require('pg');
 const argon2 = require('argon2');
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const staticMiddleware = require('./static-middleware');
 const S3 = require('aws-sdk/clients/s3');
 const multer = require('multer');
@@ -76,6 +77,17 @@ app.post('/api/auth/sign-in', (req, res, next) => {
       if (!user) {
         res.status(401).json({ error: 'invalid login' });
       }
+      const { userId, hashedPassword } = user;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            res.status(401).json({ error: 'invalid login' });
+          }
+          const payload = { userId, username };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          res.json({ token, user: payload });
+        });
     })
     .catch(err => console.error(err));
 });
