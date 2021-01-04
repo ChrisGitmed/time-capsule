@@ -59,6 +59,10 @@ app.post('/api/auth/sign-up', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+app.post('/api/auth/sign-in', (req, res, next) => {
+  res.status(200).send();
+});
+
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const {
     recipient,
