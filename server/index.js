@@ -36,11 +36,10 @@ app.use(jsonMiddleware);
 
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
-  // eslint-disable-next-line no-console
-  console.log('username: ', username);
-  // eslint-disable-next-line no-console
-  console.log('password: ', password);
-  res.status(201).send();
+  if (!username || !password) {
+    res.status(400).json({ error: 'username and password are required.' });
+  }
+  res.status(201).send('success!');
 });
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
