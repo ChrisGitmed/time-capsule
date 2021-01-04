@@ -1,5 +1,6 @@
 require('dotenv/config');
 const pg = require('pg');
+const argon2 = require('argon2');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const S3 = require('aws-sdk/clients/s3');
@@ -39,6 +40,11 @@ app.post('/api/auth/sign-up', (req, res, next) => {
   if (!username || !password) {
     res.status(400).json({ error: 'username and password are required.' });
   }
+  argon2
+    .hash(password)
+    // eslint-disable-next-line no-console
+    .then(hashedPassword => console.log('hashedPassword: ', hashedPassword))
+    .catch(err => console.error(err));
   res.status(201).send('success!');
 });
 
