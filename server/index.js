@@ -42,10 +42,21 @@ app.post('/api/auth/sign-up', (req, res, next) => {
   }
   argon2
     .hash(password)
-    // eslint-disable-next-line no-console
-    .then(hashedPassword => console.log('hashedPassword: ', hashedPassword))
+    .then(hashedPassword => {
+      const sql = `
+        insert into "users" (username, "hashedPassword")
+             values ($1,
+                     $2)
+          returning "userId", username
+      `;
+      const params = [username, hashedPassword];
+      db.query(sql, params)
+        .then(result => {
+          res.status(201).json(result.rows[0]);
+        })
+        .catch(err => console.error(err));
+    })
     .catch(err => console.error(err));
-  res.status(201).send('success!');
 });
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
