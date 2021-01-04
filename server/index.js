@@ -7,6 +7,7 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 
 const app = express();
+const jsonMiddleware = express.json();
 const s3 = new S3({
   apiVersion: '2006-03-01',
   region: 'us-west-1'
@@ -31,6 +32,16 @@ const upload = multer({
 });
 
 app.use(staticMiddleware);
+app.use(jsonMiddleware);
+
+app.post('/api/auth/sign-up', (req, res, next) => {
+  const { username, password } = req.body;
+  // eslint-disable-next-line no-console
+  console.log('username: ', username);
+  // eslint-disable-next-line no-console
+  console.log('password: ', password);
+  res.status(201).send();
+});
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const {
