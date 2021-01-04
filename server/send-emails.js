@@ -88,11 +88,11 @@ db.query(sql)
           const params = [capsuleId];
           db.query(sql, params)
             .catch(err => {
-              throw (err);
+              console.error(err);
             });
         });
     }
   })
   .catch(err => {
-    throw (err);
+    console.error(err);
   });
