@@ -71,8 +71,12 @@ app.post('/api/auth/sign-in', (req, res, next) => {
   `;
   const params = [username];
   db.query(sql, params)
-    .then(result =>
-      res.status(200).json(result.rows))
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        res.status(401).json({ error: 'invalid login' });
+      }
+    })
     .catch(err => console.error(err));
 });
 
