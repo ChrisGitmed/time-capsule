@@ -66,7 +66,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     res.status(401).json({ error: 'invalid login' });
   }
   const sql = `
-    select ("userId", "hashedPassword")
+    select "userId", "hashedPassword"
       from "users"
      where username = $1
   `;
