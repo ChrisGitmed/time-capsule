@@ -64,7 +64,16 @@ app.post('/api/auth/sign-in', (req, res, next) => {
   if (!username || !password) {
     res.status(401).json({ error: 'invalid login' });
   }
-  res.status(200).send();
+  const sql = `
+    select ("userId", "hashedPassword")
+      from "users"
+     where username = $1
+  `;
+  const params = [username];
+  db.query(sql, params)
+    .then(result =>
+      res.status(200).json(result.rows))
+    .catch(err => console.error(err));
 });
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
