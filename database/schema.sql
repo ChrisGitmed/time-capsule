@@ -23,6 +23,8 @@ CREATE TABLE "capsules" (
 
 CREATE TABLE "users" (
 	"userId" serial ,
+	"username" text not null,
+	"hashedPassword" text not null,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
