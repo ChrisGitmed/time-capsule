@@ -4,7 +4,7 @@ import parseRoute from './lib/parse-route';
 import decodeToken from './lib/decode-token';
 import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
-import SignInSignUpForm from './components/sign-in-sign-up-form';
+import AuthForm from './components/auth-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ export default class App extends React.Component {
       <AppContext.Provider value={contextValue}>
         <div className="page-container">
           <Navbar />
-          <SignInSignUpForm />
+          <AuthForm />
           <CapsuleCreationForm />
         </div>
       </AppContext.Provider>
