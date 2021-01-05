@@ -5,6 +5,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const staticMiddleware = require('./static-middleware');
 const S3 = require('aws-sdk/clients/s3');
 const multer = require('multer');
@@ -92,6 +93,8 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+app.use(authorizationMiddleware);
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const {
