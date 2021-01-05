@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
 import SignInSignUpForm from './components/sign-in-sign-up-form';
-import { parseRoute } from './lib';
+import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
   constructor(props) {

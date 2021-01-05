@@ -10,6 +10,16 @@ export default class SignInSignUpForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSignUpClick = this.handleSignUpClick.bind(this);
+    this.handleSignInClick = this.handleSignInClick.bind(this);
+  }
+
+  handleSignUpClick(event) {
+    window.location.hash = 'sign-up';
+  }
+
+  handleSignInClick(event) {
+    window.location.hash = 'sign-in';
   }
 
   handleSubmit(event) {
@@ -21,7 +31,10 @@ export default class SignInSignUpForm extends React.Component {
     };
     fetch('/api/auth/sign-up', req)
       .then(res => {
-        event.target.reset();
+        this.setState({
+          username: '',
+          password: ''
+        });
       })
       .catch(err => {
         if (err) throw err;
@@ -40,7 +53,9 @@ export default class SignInSignUpForm extends React.Component {
     const {
       handleSubmit,
       handleUsernameChange,
-      handlePasswordChange
+      handlePasswordChange,
+      handleSignUpClick,
+      handleSignInClick
     } = this;
 
     const {
@@ -60,8 +75,8 @@ export default class SignInSignUpForm extends React.Component {
             <input className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row justify-space-between">
-            <button className="sign-in-button">Sign In</button>
-            <button className="sign-up-button">Sign Up</button>
+            <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
+            <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
           </div>
         </div>
       </form>
