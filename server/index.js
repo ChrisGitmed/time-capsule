@@ -3,6 +3,8 @@ const pg = require('pg');
 const argon2 = require('argon2');
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const ClientError = require('./client-error');
+const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 const S3 = require('aws-sdk/clients/s3');
 const multer = require('multer');
@@ -39,7 +41,7 @@ app.use(jsonMiddleware);
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    res.status(400).json({ error: 'username and password are required.' });
+    throw new ClientError(400, 'username and password are required fields.');
   }
   argon2
     .hash(password)
@@ -55,15 +57,15 @@ app.post('/api/auth/sign-up', (req, res, next) => {
         .then(result => {
           res.status(201).json(result.rows[0]);
         })
-        .catch(err => console.error(err));
+        .catch(err => next(err));
     })
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 app.post('/api/auth/sign-in', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    res.status(401).json({ error: 'invalid login' });
+    throw new ClientError(401, 'invalid login');
   }
   const sql = `
     select "userId", "hashedPassword"
@@ -75,21 +77,21 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .then(result => {
       const [user] = result.rows;
       if (!user) {
-        res.status(401).json({ error: 'invalid login' });
+        throw new ClientError(401, 'invalid login');
       }
       const { userId, hashedPassword } = user;
       return argon2
         .verify(hashedPassword, password)
         .then(isMatching => {
           if (!isMatching) {
-            res.status(401).json({ error: 'invalid login' });
+            throw new ClientError(401, 'invalid login');
           }
           const payload = { userId, username };
           const token = jwt.sign(payload, process.env.TOKEN_SECRET);
           res.json({ token, user: payload });
         });
     })
-    .catch(err => console.error(err));
+    .catch(err => next(err));
 });
 
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
@@ -127,6 +129,8 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
