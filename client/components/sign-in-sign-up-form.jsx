@@ -3,30 +3,20 @@ import React from 'react';
 export default class SignInSignUpForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSignInClick = this.handleSignInClick.bind(this);
-    this.handleSignUpClick = this.handleSignUpClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSignInClick(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log(`Clicked: ${event.target.className}`);
-  }
-
-  handleSignUpClick(event) {
-    event.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log(`Clicked: ${event.target.className}`);
   }
 
   render() {
     const {
-      handleSignInClick,
-      handleSignUpClick
+      handleSubmit
     } = this;
 
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div className="row align-center">
             <label className="pad-right username-label" htmlFor="username">Username: </label>
@@ -37,8 +27,8 @@ export default class SignInSignUpForm extends React.Component {
             <input className="input-box" type="text" name="password"/>
           </div>
           <div className="row justify-space-between">
-            <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
-            <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
+            <button className="sign-in-button">Sign In</button>
+            <button className="sign-up-button">Sign Up</button>
           </div>
         </div>
       </form>
