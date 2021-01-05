@@ -54,6 +54,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
+  margin-bottom: 3rem;
   padding: 2rem;
   width: 70%;
   border-radius: 10px;
@@ -109,12 +110,38 @@ nav {
 }
 
 .submit-button {
-  margin: 4rem;
   width: 8rem;
   height: 2rem;
   border-radius: 10px;
   font-size: 1rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
+}
+
+.forgot-password-text {
+  font-size: 12px;
+  padding-bottom: 1rem;
+}
+
+.sign-in-button,
+.sign-up-button {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.sign-up-button {
+  color: #e1e5f2;
+  background-color: #022b3a;
+}
+
+.username-label,
+.password-label {
+  width: 6rem;
+}
+
+.password-label {
+  margin: 1rem 0 1rem 0;
 }
 
 .green-text {
@@ -136,6 +163,10 @@ nav {
 
 .justify-space-between {
   justify-content: space-between;
+}
+
+.justify-space-around {
+  justify-content: space-around;
 }
 
 .align-center {
