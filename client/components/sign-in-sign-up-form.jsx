@@ -14,6 +14,18 @@ export default class SignInSignUpForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/auth/sign-up', req)
+      .then(res => {
+        event.target.reset();
+      })
+      .catch(err => {
+        if (err) throw err;
+      });
   }
 
   handleUsernameChange(event) {
