@@ -103,6 +103,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
     time
   } = req.body;
   const { location } = req.file;
+  const { userId } = req.user;
 
   const dateArray = date.split('-');
   const timeArray = time.split(':');
@@ -118,13 +119,14 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const sendDate = JSON.stringify(new Date(year, month, day, hour, minute));
 
   const sql = `
-    insert into "capsules" (recipient, content, "sendOn")
+    insert into "capsules" (recipient, content, "sendOn", "userId")
          values ($1,
                  $2,
-                 $3)
+                 $3,
+                 $4)
       returning *;
   `;
-  const params = [recipient, location, sendDate];
+  const params = [recipient, location, sendDate, userId];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);
