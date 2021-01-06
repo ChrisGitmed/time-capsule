@@ -28,36 +28,20 @@ export default class AuthForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const action = this.context.route.path;
-    if (action === 'sign-up') {
-      const req = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.state)
-      };
-      fetch('/api/auth/sign-up', req)
-        .then(res => {
-          this.setState({
-            username: '',
-            password: ''
-          });
-        })
-        .catch(err => {
-          if (err) throw err;
-        });
-    } else {
-      const req = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.state)
-      };
-      fetch('/api/auth/sign-in', req)
-        .then(res => {
-          this.setState({
-            username: '',
-            password: ''
-          });
-        });
-    }
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state)
+    };
+    fetch(`/api/auth/${action}`, req)
+      .then(res => res.json())
+      .then(result => {
+        // eslint-disable-next-line no-console
+        console.log(result);
+      })
+      .catch(err => {
+        if (err) throw err;
+      });
   }
 
   handleUsernameChange(event) {

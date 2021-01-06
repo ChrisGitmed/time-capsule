@@ -42,11 +42,11 @@ export default class App extends React.Component {
 
   renderPage() {
     const { path } = this.state.route;
-    if (path === '') {
-      return <AuthForm />;
-    }
     if (path === 'sign-in' || path === 'sign-up') {
       return <AuthForm />;
+    }
+    if (path === 'landing') {
+      return <h1>Future landing page!</h1>;
     }
     if (path === 'create') {
       return <CapsuleCreationForm />;
