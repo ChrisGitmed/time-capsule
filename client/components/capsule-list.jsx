@@ -1,6 +1,12 @@
 import React from 'react';
 
 export default class CapsuleList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      capsuleList: []
+    };
+  }
 
   componentDidMount() {
     const token = localStorage.getItem('time-capsule-jwt');
@@ -12,8 +18,9 @@ export default class CapsuleList extends React.Component {
     fetch('api/capsules', req)
       .then(res => res.json())
       .then(result => {
-        // eslint-disable-next-line no-console
-        console.log(result);
+        this.setState({
+          capsuleList: result
+        });
       });
   }
 
