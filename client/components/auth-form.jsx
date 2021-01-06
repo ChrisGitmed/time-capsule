@@ -18,12 +18,10 @@ export default class AuthForm extends React.Component {
 
   handleSignUpClick(event) {
     window.location.hash = 'sign-up';
-    this.context.route.path = 'sign-up';
   }
 
   handleSignInClick(event) {
     window.location.hash = 'sign-in';
-    this.context.route.path = 'sign-in';
   }
 
   handleSubmit(event) {
