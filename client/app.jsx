@@ -46,7 +46,7 @@ export default class App extends React.Component {
     if (path === 'sign-in' || path === 'sign-up' || path === '') {
       return <AuthForm onSignIn={this.handleSignIn}/>;
     }
-    if (path === 'landing') {
+    if (path === 'home') {
       return <Home />;
     }
     if (path === 'create') {
