@@ -13,12 +13,16 @@ export default class Navbar extends React.Component {
   }
 
   render() {
+    let links;
+    if (this.context.route.path !== 'sign-in' && this.context.route.path !== 'sign-up') {
+      links = <a href="#sign-in" onClick={this.handleClick}>Sign Out</a>;
+    }
     return (
       <nav>
         <h1>
           Time Capsule
         </h1>
-        <a href="#sign-in" onClick={this.handleClick}>Sign-Out</a>
+        {links}
       </nav>
     );
   }

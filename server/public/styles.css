@@ -42,6 +42,13 @@ nav {
   color: #bfdbf7;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .page-container {
   max-width: 1000px;
   margin: auto;
