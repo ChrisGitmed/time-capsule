@@ -36,8 +36,12 @@ export default class AuthForm extends React.Component {
     fetch(`/api/auth/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        // eslint-disable-next-line no-console
-        console.log(result);
+        if (action === 'sign-up') {
+          window.location.hash = 'sign-in';
+        } else if (result.user && result.token) {
+          this.props.onSignIn(result);
+          window.location.hash = 'landing';
+        }
       })
       .catch(err => {
         if (err) throw err;

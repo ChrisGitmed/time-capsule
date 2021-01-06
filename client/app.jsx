@@ -43,7 +43,7 @@ export default class App extends React.Component {
   renderPage() {
     const { path } = this.state.route;
     if (path === 'sign-in' || path === 'sign-up') {
-      return <AuthForm />;
+      return <AuthForm onSignIn={this.handleSignIn}/>;
     }
     if (path === 'landing') {
       return <h1>Future landing page!</h1>;
@@ -51,7 +51,7 @@ export default class App extends React.Component {
     if (path === 'create') {
       return <CapsuleCreationForm />;
     }
-    return <AuthForm />;
+    return <AuthForm onSignIn={this.handleSignIn}/>;
   }
 
   render() {
