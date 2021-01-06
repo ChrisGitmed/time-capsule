@@ -45,8 +45,18 @@ export default class AuthForm extends React.Component {
           if (err) throw err;
         });
     } else {
-      // eslint-disable-next-line no-console
-      console.log('Sign in request!');
+      const req = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+      };
+      fetch('/api/auth/sign-in', req)
+        .then(res => {
+          this.setState({
+            username: '',
+            password: ''
+          });
+        });
     }
   }
 
