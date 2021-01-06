@@ -8,6 +8,7 @@ export default class AuthForm extends React.Component {
       username: '',
       password: ''
     };
+    this.signInButton = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -38,7 +39,9 @@ export default class AuthForm extends React.Component {
       .then(result => {
         if (action === 'sign-up') {
           window.location.hash = 'sign-in';
-        } else if (result.user && result.token) {
+          this.signInButton.current.click();
+        }
+        if (result.user && result.token) {
           this.props.onSignIn(result);
           window.location.hash = 'landing';
         }
@@ -82,7 +85,7 @@ export default class AuthForm extends React.Component {
             <input className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row align-center justify-flex-end">
-            <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
+            <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
             <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
           </div>
         </div>
