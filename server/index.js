@@ -97,11 +97,14 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 app.use(authorizationMiddleware);
 
 app.get('/api/capsules', (req, res, next) => {
+  const { userId } = req.user;
   const sql = `
     select *
       from capsules
+     where "userId" = $1
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.status(200).json(result.rows);
     })
