@@ -32,7 +32,7 @@ button:hover {
 }
 
 nav {
-  padding: 0 2rem 0 2rem;
+  padding: 0 1rem 0 1rem;
   margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
@@ -45,8 +45,14 @@ nav {
 a {
   color: white;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-family: 'Open Sans', sans-serif;
+  transition: 0.2s;
+}
+
+a:hover {
+  color: #bfdbf7;
+  transition: 0.2s;
 }
 
 .page-container {
