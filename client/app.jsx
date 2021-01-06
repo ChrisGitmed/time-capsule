@@ -46,7 +46,7 @@ export default class App extends React.Component {
       return <AuthForm onSignIn={this.handleSignIn}/>;
     }
     if (path === 'landing') {
-      return <h1>Future landing page!</h1>;
+      return <a href="#create">Create a capsule.</a>;
     }
     if (path === 'create') {
       return <CapsuleCreationForm />;
