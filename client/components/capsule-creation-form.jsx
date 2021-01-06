@@ -26,9 +26,6 @@ export default class CapsuleCreationForm extends React.Component {
       body: form
     };
     fetch('/api/uploads', req)
-      .then(res => {
-        event.target.reset();
-      })
       .then(
         event.target.reset(),
         this.setState({

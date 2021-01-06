@@ -78,11 +78,11 @@ export default class AuthForm extends React.Component {
         <div className="form-container auth-form">
           <div className="row align-center">
             <label className="pad-right username-label" htmlFor="username">Username: </label>
-            <input className="input-box" type="text" name="username" onChange={handleUsernameChange} value={username} />
+            <input required className="input-box" type="text" name="username" onChange={handleUsernameChange} value={username} />
           </div>
           <div className="row align-center">
             <label className="pad-right password-label" htmlFor="password">Password: </label>
-            <input className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
+            <input required className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row align-center justify-flex-end">
             <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
