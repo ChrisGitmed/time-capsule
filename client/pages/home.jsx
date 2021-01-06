@@ -1,4 +1,5 @@
 import React from 'react';
+import CapsuleList from '../components/capsule-list';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Home extends React.Component {
     return (
     <>
       <button onClick={handleClick}>Create</button>
+      <CapsuleList />
     </>
     );
   }
