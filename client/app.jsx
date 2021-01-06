@@ -61,7 +61,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <div className="page-container">
-          <Navbar />
+          <Navbar onSignOut={handleSignOut}/>
           {this.renderPage()}
         </div>
       </AppContext.Provider>
