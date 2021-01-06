@@ -1,6 +1,7 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
-export default class SignInSignUpForm extends React.Component {
+export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,29 +17,37 @@ export default class SignInSignUpForm extends React.Component {
 
   handleSignUpClick(event) {
     window.location.hash = 'sign-up';
+    this.context.route.path = 'sign-up';
   }
 
   handleSignInClick(event) {
     window.location.hash = 'sign-in';
+    this.context.route.path = 'sign-in';
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
-    };
-    fetch('/api/auth/sign-up', req)
-      .then(res => {
-        this.setState({
-          username: '',
-          password: ''
+    const action = this.context.route.path;
+    if (action === 'sign-up') {
+      const req = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+      };
+      fetch('/api/auth/sign-up', req)
+        .then(res => {
+          this.setState({
+            username: '',
+            password: ''
+          });
+        })
+        .catch(err => {
+          if (err) throw err;
         });
-      })
-      .catch(err => {
-        if (err) throw err;
-      });
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('Sign in request!');
+    }
   }
 
   handleUsernameChange(event) {
@@ -83,3 +92,4 @@ export default class SignInSignUpForm extends React.Component {
     );
   }
 }
+AuthForm.contextType = AppContext;
