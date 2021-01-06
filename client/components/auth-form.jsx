@@ -56,13 +56,41 @@ export default class AuthForm extends React.Component {
     this.setState({ password: event.target.value });
   }
 
+  isLongerThan8(password) {
+    if (password.length > 8) {
+      return true;
+    } else return false;
+  }
+
+  doesIncludeANumber(password) {
+    const regex = /\d/;
+    const hasANumber = regex.test(password);
+    return hasANumber;
+  }
+
+  doesIncludeACapitalLetter(password) {
+    const regex = /[A-Z]+/;
+    const hasACapital = regex.test(password);
+    return hasACapital;
+  }
+
+  doesIncludeASymbol(password) {
+    const regex = /[\W]/;
+    const hasASymbol = regex.test(password);
+    return hasASymbol;
+  }
+
   render() {
     const {
       handleSubmit,
       handleUsernameChange,
       handlePasswordChange,
       handleSignUpClick,
-      handleSignInClick
+      handleSignInClick,
+      isLongerThan8,
+      doesIncludeANumber,
+      doesIncludeACapitalLetter,
+      doesIncludeASymbol
     } = this;
 
     const {
@@ -70,9 +98,22 @@ export default class AuthForm extends React.Component {
       password
     } = this.state;
 
+    let message;
+
+    if (password.length > 0) {
+      if (!isLongerThan8(password)) {
+        message = 'Your password is too short.';
+      } else if (!doesIncludeACapitalLetter(password)) {
+        message = 'Password must include a capital letter';
+      } else if (!doesIncludeANumber(password)) {
+        message = 'Password must include a number.';
+      } else if (!doesIncludeASymbol(password)) {
+        message = 'Password must include a symbol.';
+      }
+    }
     return (
       <form onSubmit={handleSubmit}>
-        <div className="form-container">
+        <div className="form-container auth-form">
           <div className="row align-center">
             <label className="pad-right username-label" htmlFor="username">Username: </label>
             <input className="input-box" type="text" name="username" onChange={handleUsernameChange} value={username} />
@@ -81,7 +122,10 @@ export default class AuthForm extends React.Component {
             <label className="pad-right password-label" htmlFor="password">Password: </label>
             <input className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
           </div>
-          <div className="row justify-space-between">
+          <div className="row justify-flex-end">
+            <em>{message}</em>
+          </div>
+          <div className="row align-center justify-flex-end">
             <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
             <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
           </div>

@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+em {
+  font-size: 0.8rem;
+}
+
 p,
 button,
 label {
@@ -146,6 +150,7 @@ a:hover {
 .sign-up-button {
   color: #e1e5f2;
   background-color: #022b3a;
+  margin-left: 1rem;
 }
 
 .username-label,
@@ -155,6 +160,10 @@ a:hover {
 
 .password-label {
   margin: 1rem 0 1rem 0;
+}
+
+.auth-form {
+  max-height: 10rem;
 }
 
 .green-text {
