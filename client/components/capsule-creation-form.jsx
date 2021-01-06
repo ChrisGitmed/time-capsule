@@ -16,15 +16,16 @@ export default class CapsuleCreationForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const token = localStorage.getItem('time-capsule-jwt');
     const form = new FormData(event.target);
     const req = {
       method: 'POST',
+      headers: {
+        'x-access-token': token
+      },
       body: form
     };
     fetch('/api/uploads', req)
-      .then(res => {
-        event.target.reset();
-      })
       .then(
         event.target.reset(),
         this.setState({

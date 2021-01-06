@@ -33,7 +33,7 @@ db.query(sql)
         capsuleId
       } = res.rows[i];
       transporter.sendMail({
-        from: process.env.EMAIL_FROM,
+        from: `<${process.env.EMAIL_FROM}>`,
         to: recipient,
         subject: 'Someone sent you a file!',
         html: `
