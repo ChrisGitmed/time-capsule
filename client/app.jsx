@@ -40,6 +40,20 @@ export default class App extends React.Component {
     this.setState({ user: null });
   }
 
+  renderPage() {
+    const { path } = this.state.route;
+    if (path === '') {
+      return <AuthForm />;
+    }
+    if (path === 'sign-in' || path === 'sign-up') {
+      return <AuthForm />;
+    }
+    if (path === 'create') {
+      return <CapsuleCreationForm />;
+    }
+    return <AuthForm />;
+  }
+
   render() {
     const { user, route } = this.state;
     const { handleSignIn, handleSignOut } = this;
@@ -48,8 +62,7 @@ export default class App extends React.Component {
       <AppContext.Provider value={contextValue}>
         <div className="page-container">
           <Navbar />
-          <AuthForm />
-          <CapsuleCreationForm />
+          {this.renderPage()}
         </div>
       </AppContext.Provider>
     );
