@@ -40,7 +40,12 @@ app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
 app.get('/api/link', (req, res, next) => {
-  res.status(200).send('success');
+  const params = { Bucket: 'lfztimecapsule', Key: '1609441735050' };
+  s3.getSignedUrlPromise('getObject', params)
+    .then(url => {
+      res.redirect(303, url);
+    })
+    .catch(err => next(err));
 });
 
 app.post('/api/auth/sign-up', (req, res, next) => {
