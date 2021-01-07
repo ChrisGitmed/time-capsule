@@ -2,12 +2,21 @@
   display: none;
 }
 
-body {
+body,
+p {
   margin: 0;
 }
 
 em {
   font-size: 0.8rem;
+}
+
+ul {
+  padding: 0;
+}
+
+span {
+  padding-left: 0.25rem;
 }
 
 p,
@@ -36,7 +45,7 @@ button:hover {
 }
 
 nav {
-  padding: 0 1rem 0 1rem;
+  padding: 0 1.5rem 0 1.5rem;
   margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
@@ -62,6 +71,7 @@ a:hover {
 .page-container {
   max-width: 1000px;
   margin: auto;
+  padding-bottom: 2rem;
   background-color: #e1e5f2;
   min-height: 100vh;
 }
@@ -126,12 +136,14 @@ a:hover {
   padding-right: 0.4rem;
 }
 
-.submit-button {
+.submit-button,
+.create-button {
   width: 8rem;
   height: 2rem;
   border-radius: 10px;
   font-size: 1rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
+  margin-bottom: 2rem;
 }
 
 .forgot-password-text {
@@ -162,17 +174,25 @@ a:hover {
   margin: 1rem 0 1rem 0;
 }
 
-.auth-form {
-  max-height: 10rem;
+.flavor-text {
+  color: #1f7a8c;
 }
 
 .green-text {
   color: darkgreen;
 }
 
+.pad-bottom {
+  padding-bottom: 1rem;
+}
+
 .row {
   width: 100%;
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .justify-center {
@@ -209,5 +229,11 @@ a:hover {
     .unwrap-if-large {
       flex-wrap: nowrap;
     }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .unwrap-if-larger {
+    flex-wrap: nowrap;
   }
 }

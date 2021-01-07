@@ -5,6 +5,7 @@ import decodeToken from './lib/decode-token';
 import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
 import AuthForm from './components/auth-form';
+import Home from './pages/home';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,11 +43,11 @@ export default class App extends React.Component {
 
   renderPage() {
     const { path } = this.state.route;
-    if (path === 'sign-in' || path === 'sign-up') {
+    if (path === 'sign-in' || path === 'sign-up' || path === '') {
       return <AuthForm onSignIn={this.handleSignIn}/>;
     }
-    if (path === 'landing') {
-      return <a href="#create">Create a capsule.</a>;
+    if (path === 'home') {
+      return <Home />;
     }
     if (path === 'create') {
       return <CapsuleCreationForm />;

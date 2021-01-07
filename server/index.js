@@ -96,6 +96,21 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
+app.get('/api/capsules', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+    select *
+      from capsules
+     where "userId" = $1
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const {
     recipient,

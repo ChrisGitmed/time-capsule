@@ -41,7 +41,7 @@ export default class AuthForm extends React.Component {
         }
         if (result.user && result.token) {
           this.props.onSignIn(result);
-          window.location.hash = 'landing';
+          window.location.hash = 'home';
         }
       })
       .catch(err => {
