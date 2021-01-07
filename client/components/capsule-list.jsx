@@ -25,6 +25,12 @@ export default class CapsuleList extends React.Component {
   }
 
   render() {
-    return <h1>Capsule list coming soon.</h1>;
+    const { capsuleList } = this.state;
+    const listItems = capsuleList.map(capsule =>
+      <li className="form-container" key={capsule.capsuleId}>
+          <p>Capsule ID: {capsule.capsuleId}</p>
+      </li>
+    );
+    return <ul>{listItems}</ul>;
   }
 }
