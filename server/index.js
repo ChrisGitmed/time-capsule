@@ -39,6 +39,10 @@ const upload = multer({
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
+app.get('/api/link', (req, res, next) => {
+  res.status(200).send('success');
+});
+
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
