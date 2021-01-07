@@ -14,8 +14,11 @@ export default class Navbar extends React.Component {
 
   render() {
     let links;
-    if (this.context.route.path === 'home' || this.context.route.path === 'create') {
+    const { path } = this.context.route;
+    if (path === 'home') {
       links = <a href="#sign-in" onClick={this.handleClick}>Sign Out</a>;
+    } else if (path === 'create') {
+      links = <a href="#home">Home</a>;
     }
     return (
       <nav>
@@ -26,5 +29,6 @@ export default class Navbar extends React.Component {
       </nav>
     );
   }
+
 }
 Navbar.contextType = AppContext;
