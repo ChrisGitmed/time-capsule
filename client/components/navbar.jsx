@@ -14,7 +14,7 @@ export default class Navbar extends React.Component {
 
   render() {
     let links;
-    if (this.context.route.path !== 'sign-in' && this.context.route.path !== 'sign-up') {
+    if (this.context.route.path === 'home' || this.context.route.path === 'create') {
       links = <a href="#sign-in" onClick={this.handleClick}>Sign Out</a>;
     }
     return (
