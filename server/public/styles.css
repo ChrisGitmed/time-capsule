@@ -126,7 +126,8 @@ a:hover {
   padding-right: 0.4rem;
 }
 
-.submit-button {
+.submit-button,
+.create-button {
   width: 8rem;
   height: 2rem;
   border-radius: 10px;
@@ -160,10 +161,6 @@ a:hover {
 
 .password-label {
   margin: 1rem 0 1rem 0;
-}
-
-.auth-form {
-  max-height: 10rem;
 }
 
 .green-text {

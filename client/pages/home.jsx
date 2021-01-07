@@ -15,7 +15,9 @@ export default class Home extends React.Component {
     const { handleClick } = this;
     return (
     <>
-      <button onClick={handleClick}>Create</button>
+      <div className="row justify-center">
+        <button className="create-button"onClick={handleClick}>Create</button>
+      </div>
       <CapsuleList />
     </>
     );
