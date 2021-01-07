@@ -39,11 +39,25 @@ const upload = multer({
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
-app.get('/api/download', (req, res, next) => {
-  const params = { Bucket: 'lfztimecapsule', Key: '1609441735050' };
-  s3.getSignedUrlPromise('getObject', params)
-    .then(url => {
-      res.redirect(303, url);
+app.get('/api/download/:capsuleId', (req, res, next) => {
+  const { capsuleId } = req.params;
+  const sql = `
+    select content
+      from capsules
+     where "capsuleId" = $1
+  `;
+  const params = [capsuleId];
+  db.query(sql, params)
+    .then(result => {
+      const { content } = result.rows[0];
+      const splitUrl = content.split('/');
+      const key = splitUrl[splitUrl.length - 1];
+      const bucketParams = { Bucket: 'lfztimecapsule', Key: key };
+      s3.getSignedUrlPromise('getObject', bucketParams)
+        .then(url => {
+          res.redirect(303, url);
+        })
+        .catch(err => next(err));
     })
     .catch(err => next(err));
 });
