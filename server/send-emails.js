@@ -29,7 +29,6 @@ db.query(sql)
     for (let i = 0; i < res.rows.length; i++) {
       const {
         recipient,
-        content,
         capsuleId
       } = res.rows[i];
       transporter.sendMail({
@@ -68,7 +67,7 @@ db.query(sql)
                                 background-color: #E1E5F2;
                                 border-radius: 5px;
                                 padding: 1rem;">
-                      <a href="${content}">Download link</a>
+                      <a href="http://localhost:3000/api/download">Download link</a>
                     </div>
                   </div>
                   <em style="font-size: 11px">Sent from a bot. Please do not respond</em>

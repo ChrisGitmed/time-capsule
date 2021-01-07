@@ -39,7 +39,7 @@ const upload = multer({
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
-app.get('/api/link', (req, res, next) => {
+app.get('/api/download', (req, res, next) => {
   const params = { Bucket: 'lfztimecapsule', Key: '1609441735050' };
   s3.getSignedUrlPromise('getObject', params)
     .then(url => {
