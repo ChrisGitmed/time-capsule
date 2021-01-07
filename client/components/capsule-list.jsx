@@ -28,7 +28,7 @@ export default class CapsuleList extends React.Component {
     const { capsuleList } = this.state;
     const listItems = capsuleList.map(capsule => {
       const date = new Date(capsule.sendOn);
-      const sendString = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'short' }).format(date);
+      const sendString = new Intl.DateTimeFormat('en-US', { dateStyle: 'short', timeStyle: 'short' }).format(date);
       return (
         <li className="form-container" key={capsule.capsuleId}>
           <div className="row wrap unwrap-if-larger">
