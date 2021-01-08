@@ -30,11 +30,6 @@ export default class AuthForm extends React.Component {
     event.preventDefault();
     const action = this.context.route.path;
     const { password } = this.state;
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
-    };
     if (password.length < 8) {
       this.setState({ message: 'Too short' });
     } else if (!/\d/.test(password)) {
@@ -44,6 +39,11 @@ export default class AuthForm extends React.Component {
     } else if (!/[\W]/.test(password)) {
       this.setState({ message: 'Needs a symbol' });
     } else {
+      const req = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+      };
       fetch(`/api/auth/${action}`, req)
         .then(res => res.json())
         .then(result => {
@@ -60,7 +60,6 @@ export default class AuthForm extends React.Component {
           if (err) throw err;
         });
     }
-
   }
 
   handleUsernameChange(event) {
