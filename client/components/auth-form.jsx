@@ -7,7 +7,8 @@ export default class AuthForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     };
     this.signInButton = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,26 +29,37 @@ export default class AuthForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const action = this.context.route.path;
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/auth/${action}`, req)
-      .then(res => res.json())
-      .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'sign-in';
-          this.signInButton.current.click();
-        }
-        if (result.user && result.token) {
-          this.props.onSignIn(result);
-          window.location.hash = 'home';
-        }
-      })
-      .catch(err => {
-        if (err) throw err;
-      });
+    const { password } = this.state;
+    if (password.length < 8) {
+      this.setState({ message: 'Password is too short' });
+    } else if (!/\d/.test(password)) {
+      this.setState({ message: 'Password needs a number.' });
+    } else if (!/[A-Z]+/.test(password)) {
+      this.setState({ message: 'Password needs a capital.' });
+    } else if (!/[\W]/.test(password)) {
+      this.setState({ message: 'Password needs a symbol.' });
+    } else {
+      const req = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+      };
+      fetch(`/api/auth/${action}`, req)
+        .then(res => res.json())
+        .then(result => {
+          if (action === 'sign-up') {
+            window.location.hash = 'sign-in';
+            this.signInButton.current.click();
+          }
+          if (result.user && result.token) {
+            this.props.onSignIn(result);
+            window.location.hash = 'home';
+          }
+        })
+        .catch(err => {
+          if (err) throw err;
+        });
+    }
   }
 
   handleUsernameChange(event) {
@@ -55,7 +67,10 @@ export default class AuthForm extends React.Component {
   }
 
   handlePasswordChange(event) {
-    this.setState({ password: event.target.value });
+    this.setState({
+      password: event.target.value,
+      message: ''
+    });
   }
 
   render() {
@@ -69,7 +84,8 @@ export default class AuthForm extends React.Component {
 
     const {
       username,
-      password
+      password,
+      message
     } = this.state;
 
     const { user } = this.context;
@@ -80,15 +96,20 @@ export default class AuthForm extends React.Component {
         <div className="form-container auth-form">
           <div className="row align-center">
             <label className="pad-right username-label" htmlFor="username">Username: </label>
-            <input required className="input-box" type="text" name="username" onChange={handleUsernameChange} value={username} />
+            <input required className="input-box" type="text" name="username" autoComplete="username" onChange={handleUsernameChange} value={username} />
           </div>
           <div className="row align-center">
             <label className="pad-right password-label" htmlFor="password">Password: </label>
-            <input required className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
+            <input required className="input-box" type="password" autoComplete="current-password" onChange={handlePasswordChange} value={password}/>
           </div>
-          <div className="row align-center justify-flex-end">
-            <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
-            <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
+          <div className="row align-center justify-space-between wrap unwrap-if-large">
+            <div className="row placeholder">
+              <em className="error-text">{message}</em>
+            </div>
+            <div className="row justify-space-around">
+              <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
+              <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
+            </div>
           </div>
         </div>
       </form>

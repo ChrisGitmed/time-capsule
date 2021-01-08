@@ -3,12 +3,14 @@
 }
 
 body,
-p {
+p,
+em {
   margin: 0;
 }
 
 em {
-  font-size: 0.8rem;
+  font-size: 0.65rem;
+  font-family: 'Open Sans', sans-serif;
 }
 
 ul {
@@ -146,11 +148,6 @@ a:hover {
   margin-bottom: 2rem;
 }
 
-.forgot-password-text {
-  font-size: 12px;
-  padding-bottom: 1rem;
-}
-
 .sign-in-button,
 .sign-up-button {
   margin-top: 1rem;
@@ -174,8 +171,16 @@ a:hover {
   margin: 1rem 0 1rem 0;
 }
 
+.placeholder {
+  min-height: 0.9rem;
+}
+
 .flavor-text {
   color: #1f7a8c;
+}
+
+.error-text {
+  color: #c5291b;
 }
 
 .green-text {
