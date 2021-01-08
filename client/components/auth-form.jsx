@@ -49,7 +49,9 @@ export default class AuthForm extends React.Component {
         .then(result => {
           if (action === 'sign-up') {
             window.location.hash = 'sign-in';
-            this.signInButton.current.click();
+            this.setState({
+              message: 'success'
+            });
           }
           if (result.user && result.token) {
             this.props.onSignIn(result);
@@ -91,6 +93,10 @@ export default class AuthForm extends React.Component {
     const { user } = this.context;
     if (user) return <Redirect to=""/>;
 
+    let hiddenText = <em className="error-text">{message}</em>;
+    if (message === 'success') {
+      hiddenText = <em className="success-text">Sign-up successful.</em>;
+    }
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container auth-form">
@@ -103,8 +109,8 @@ export default class AuthForm extends React.Component {
             <input required className="input-box" type="password" autoComplete="current-password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row align-center justify-space-between wrap unwrap-if-large">
-            <div className="row placeholder">
-              <em className="error-text">{message}</em>
+            <div className="row placeholder justify-center">
+              {hiddenText}
             </div>
             <div className="row justify-space-around">
               <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
