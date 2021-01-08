@@ -142,7 +142,6 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   } = req.body;
   const { location } = req.file;
   const { userId } = req.user;
-
   const dateArray = date.split('-');
   const timeArray = time.split(':');
   const [
@@ -154,7 +153,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
     hour,
     minute
   ] = timeArray;
-  const sendDate = JSON.stringify(new Date(year, month, day, hour, minute));
+  const sendDate = JSON.stringify(new Date(year, month - 1, day, hour, minute));
 
   const sql = `
     insert into "capsules" (recipient, content, "sendOn", "userId")
