@@ -1,4 +1,6 @@
 import React from 'react';
+import Redirect from './redirect';
+import AppContext from '../lib/app-context';
 
 export default class CapsuleCreationForm extends React.Component {
   constructor(props) {
@@ -76,6 +78,8 @@ export default class CapsuleCreationForm extends React.Component {
     } = this;
     const { fileName } = this.state;
 
+    if (!this.context.user) return <Redirect to="sign-in" />;
+
     let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
     if (fileName !== '') {
       dropZoneText = <p className="green-text">{fileName}</p>;
@@ -109,3 +113,4 @@ export default class CapsuleCreationForm extends React.Component {
     );
   }
 }
+CapsuleCreationForm.contextType = AppContext;

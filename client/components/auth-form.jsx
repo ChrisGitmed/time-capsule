@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import Redirect from './redirect';
 
 export default class AuthForm extends React.Component {
   constructor(props) {
@@ -70,6 +71,9 @@ export default class AuthForm extends React.Component {
       username,
       password
     } = this.state;
+
+    const { user } = this.context;
+    if (user) return <Redirect to=""/>;
 
     return (
       <form onSubmit={handleSubmit}>

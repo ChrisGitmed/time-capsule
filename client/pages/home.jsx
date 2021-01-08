@@ -1,5 +1,7 @@
 import React from 'react';
 import CapsuleList from '../components/capsule-list';
+import Redirect from '../components/redirect';
+import AppContext from '../lib/app-context';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -13,6 +15,7 @@ export default class Home extends React.Component {
 
   render() {
     const { handleClick } = this;
+    if (!this.context.user) return <Redirect to="sign-in"/>;
     return (
     <>
       <div className="row justify-center">
@@ -23,3 +26,4 @@ export default class Home extends React.Component {
     );
   }
 }
+Home.contextType = AppContext;
