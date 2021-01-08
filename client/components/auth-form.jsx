@@ -7,7 +7,8 @@ export default class AuthForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     };
     this.signInButton = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,26 +29,38 @@ export default class AuthForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const action = this.context.route.path;
+    const { password } = this.state;
     const req = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(this.state)
     };
-    fetch(`/api/auth/${action}`, req)
-      .then(res => res.json())
-      .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'sign-in';
-          this.signInButton.current.click();
-        }
-        if (result.user && result.token) {
-          this.props.onSignIn(result);
-          window.location.hash = 'home';
-        }
-      })
-      .catch(err => {
-        if (err) throw err;
-      });
+    if (password.length < 8) {
+      this.setState({ message: 'Too short' });
+    } else if (!/\d/.test(password)) {
+      this.setState({ message: 'Needs a number' });
+    } else if (!/[A-Z]+/.test(password)) {
+      this.setState({ message: 'Needs a capital' });
+    } else if (!/[\W]/.test(password)) {
+      this.setState({ message: 'Needs a symbol' });
+    } else {
+      fetch(`/api/auth/${action}`, req)
+        .then(res => res.json())
+        .then(result => {
+          if (action === 'sign-up') {
+            window.location.hash = 'sign-in';
+            this.signInButton.current.click();
+          }
+          if (result.user && result.token) {
+            this.props.onSignIn(result);
+            window.location.hash = 'home';
+          }
+        })
+        .catch(err => {
+          if (err) throw err;
+        });
+    }
+
   }
 
   handleUsernameChange(event) {
@@ -69,7 +82,8 @@ export default class AuthForm extends React.Component {
 
     const {
       username,
-      password
+      password,
+      message
     } = this.state;
 
     const { user } = this.context;
@@ -87,6 +101,7 @@ export default class AuthForm extends React.Component {
             <input required className="input-box" type="text" name="password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row align-center justify-flex-end">
+            <p>{message}</p>
             <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
             <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
           </div>
