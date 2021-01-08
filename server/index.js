@@ -39,6 +39,29 @@ const upload = multer({
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
+app.get('/api/download/:capsuleId', (req, res, next) => {
+  const { capsuleId } = req.params;
+  const sql = `
+    select content
+      from capsules
+     where "capsuleId" = $1
+  `;
+  const params = [capsuleId];
+  db.query(sql, params)
+    .then(result => {
+      const { content } = result.rows[0];
+      const path = new URL(content).pathname;
+      const key = path.substring(1);
+      const bucketParams = { Bucket: 'lfztimecapsule', Key: key };
+      s3.getSignedUrlPromise('getObject', bucketParams)
+        .then(url => {
+          res.redirect(303, url);
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
