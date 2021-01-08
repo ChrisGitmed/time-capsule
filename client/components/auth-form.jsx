@@ -20,6 +20,9 @@ export default class AuthForm extends React.Component {
 
   handleSignUpClick(event) {
     window.location.hash = 'sign-up';
+    this.setState({
+      message: ''
+    });
   }
 
   handleSignInClick(event) {
@@ -45,7 +48,12 @@ export default class AuthForm extends React.Component {
         body: JSON.stringify(this.state)
       };
       fetch(`/api/auth/${action}`, req)
-        .then(res => res.json())
+        .then(res => {
+          if (res.status === 401) {
+            this.setState({ message: 'Invalid login.' });
+          }
+          return res.json();
+        })
         .then(result => {
           if (action === 'sign-up') {
             window.location.hash = 'sign-in';
