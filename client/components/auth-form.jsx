@@ -10,7 +10,6 @@ export default class AuthForm extends React.Component {
       password: '',
       message: ''
     };
-    this.signInButton = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -20,6 +19,9 @@ export default class AuthForm extends React.Component {
 
   handleSignUpClick(event) {
     window.location.hash = 'sign-up';
+    this.setState({
+      message: ''
+    });
   }
 
   handleSignInClick(event) {
@@ -45,11 +47,18 @@ export default class AuthForm extends React.Component {
         body: JSON.stringify(this.state)
       };
       fetch(`/api/auth/${action}`, req)
-        .then(res => res.json())
+        .then(res => {
+          if (res.status === 401) {
+            this.setState({ message: 'Invalid login.' });
+          }
+          return res.json();
+        })
         .then(result => {
           if (action === 'sign-up') {
             window.location.hash = 'sign-in';
-            this.signInButton.current.click();
+            this.setState({
+              message: 'success'
+            });
           }
           if (result.user && result.token) {
             this.props.onSignIn(result);
@@ -91,6 +100,10 @@ export default class AuthForm extends React.Component {
     const { user } = this.context;
     if (user) return <Redirect to=""/>;
 
+    let hiddenText = <em className="error-text">{message}</em>;
+    if (message === 'success') {
+      hiddenText = <em className="success-text">Sign-up successful.</em>;
+    }
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container auth-form">
@@ -103,11 +116,11 @@ export default class AuthForm extends React.Component {
             <input required className="input-box" type="password" autoComplete="current-password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row align-center justify-space-between wrap unwrap-if-large">
-            <div className="row placeholder">
-              <em className="error-text">{message}</em>
+            <div className="row placeholder justify-center">
+              {hiddenText}
             </div>
             <div className="row justify-space-around">
-              <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
+              <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
               <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
             </div>
           </div>
