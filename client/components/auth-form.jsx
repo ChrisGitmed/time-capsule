@@ -10,7 +10,6 @@ export default class AuthForm extends React.Component {
       password: '',
       message: ''
     };
-    this.signInButton = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -121,7 +120,7 @@ export default class AuthForm extends React.Component {
               {hiddenText}
             </div>
             <div className="row justify-space-around">
-              <button className="sign-in-button" ref={this.signInButton} onClick={handleSignInClick}>Sign In</button>
+              <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
               <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
             </div>
           </div>
