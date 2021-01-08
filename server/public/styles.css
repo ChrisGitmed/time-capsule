@@ -234,10 +234,6 @@ a:hover {
     .unwrap-if-large {
       flex-wrap: nowrap;
     }
-
-    .wrap-if-small {
-      flex-wrap: wrap;
-    }
   }
 }
 
