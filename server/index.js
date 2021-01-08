@@ -50,7 +50,8 @@ app.get('/api/download/:capsuleId', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const { content } = result.rows[0];
-      const key = new URL(content).pathname;
+      const url = new URL(content).pathname;
+      const key = url.substring(1);
       const bucketParams = { Bucket: 'lfztimecapsule', Key: key };
       s3.getSignedUrlPromise('getObject', bucketParams)
         .then(url => {
