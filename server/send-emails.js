@@ -67,7 +67,7 @@ db.query(sql)
                                 background-color: #E1E5F2;
                                 border-radius: 5px;
                                 padding: 1rem;">
-                      <a href="http://localhost:3000/api/download/${capsuleId}">Download link</a>
+                      <a href="http://${process.env.EMAIL_ROUTE}/api/download/${capsuleId}">Download link</a>
                     </div>
                   </div>
                   <em style="font-size: 11px">Sent from a bot. Please do not respond</em>
