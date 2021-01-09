@@ -20,6 +20,23 @@ export default class CapsuleCreationForm extends React.Component {
     event.preventDefault();
     const token = localStorage.getItem('time-capsule-jwt');
     const form = new FormData(event.target);
+    const date = form.get('date');
+    const time = form.get('time');
+    const dateArray = date.split('-');
+    const timeArray = time.split(':');
+    const [
+      year,
+      month,
+      day
+    ] = dateArray;
+    const [
+      hour,
+      minute
+    ] = timeArray;
+    const sendOn = JSON.stringify(new Date(year, month - 1, day, hour, minute));
+    form.append('sendOn', sendOn);
+    form.delete('time');
+    form.delete('date');
     const req = {
       method: 'POST',
       headers: {
@@ -82,7 +99,7 @@ export default class CapsuleCreationForm extends React.Component {
 
     let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
     if (fileName !== '') {
-      dropZoneText = <p className="green-text">{fileName}</p>;
+      dropZoneText = <p className="success-text">{fileName}</p>;
     }
     return (
       <form onSubmit={handleSubmit}>

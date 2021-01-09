@@ -137,25 +137,10 @@ app.get('/api/capsules', (req, res, next) => {
 app.post('/api/uploads', upload.single('file'), (req, res, next) => {
   const {
     recipient,
-    date,
-    time
+    sendOn
   } = req.body;
   const { location } = req.file;
   const { userId } = req.user;
-
-  const dateArray = date.split('-');
-  const timeArray = time.split(':');
-  const [
-    year,
-    month,
-    day
-  ] = dateArray;
-  const [
-    hour,
-    minute
-  ] = timeArray;
-  const sendDate = JSON.stringify(new Date(year, month, day, hour, minute));
-
   const sql = `
     insert into "capsules" (recipient, content, "sendOn", "userId")
          values ($1,
@@ -164,7 +149,7 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
                  $4)
       returning *;
   `;
-  const params = [recipient, location, sendDate, userId];
+  const params = [recipient, location, sendOn, userId];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);
