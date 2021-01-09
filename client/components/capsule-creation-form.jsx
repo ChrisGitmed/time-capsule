@@ -99,7 +99,7 @@ export default class CapsuleCreationForm extends React.Component {
 
     let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
     if (fileName !== '') {
-      dropZoneText = <p className="green-text">{fileName}</p>;
+      dropZoneText = <p className="success-text">{fileName}</p>;
     }
     return (
       <form onSubmit={handleSubmit}>
