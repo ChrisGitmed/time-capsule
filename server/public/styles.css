@@ -119,6 +119,11 @@ a:hover {
   align-items: center;
 }
 
+.date-label,
+.time-label {
+  width: 2.5rem;
+}
+
 .date-time-row {
   width: 100%;
   display: flex;
