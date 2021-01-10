@@ -34,7 +34,7 @@ db.query(sql)
       transporter.sendMail({
         from: `<${process.env.EMAIL_FROM}>`,
         to: recipient,
-        subject: 'Someone sent you a file!',
+        subject: 'Someone sent you a capsule!',
         html: `
           <div style="height: 100vh;
                       background-color: #E1E5F2;
@@ -74,8 +74,8 @@ db.query(sql)
                 </div>
               </div>
             </div>
-            <p><em style="font-size: 11px">Visit me here</em><br>
-               <em style="font-size: 11px">See how I work here</em></p>
+            <p><em style="font-size: 11px">Visit me <a href="https://lfz-time-capsule.herokuapp.com" style="text-decoration: none">here</a>.</em><br>
+               <em style="font-size: 11px">See how I work <a href="https://github.com/ChrisGitmed/time-capsule" style="text-decoration: none">here</a>.</em></p>
           <div>
         `
       })
