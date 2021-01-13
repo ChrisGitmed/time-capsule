@@ -21,3 +21,8 @@ Try the application live at https://lfz-time-capsule.herokuapp.com
 * Users can upload their files (capsules) to the cloud.
 * Users can specify a date, time, and recipient for these capsules.
 * Recipients receive an email containing a download link to the capsules contents.
+
+## Preview
+<img
+ src="https://media.giphy.com/media/yDrXygE7O7EeV2XmRc/giphy.gif"
+ width="300">
