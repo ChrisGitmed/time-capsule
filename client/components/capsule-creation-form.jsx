@@ -51,6 +51,9 @@ export default class CapsuleCreationForm extends React.Component {
           fileName: ''
         })
       )
+      .then(
+        window.location.hash = 'my-capsules'
+      )
       .catch(err => {
         if (err) throw err;
       });

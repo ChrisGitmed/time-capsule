@@ -43,10 +43,13 @@ export default class App extends React.Component {
 
   renderPage() {
     const { path } = this.state.route;
+    if (path === '') {
+      window.location.hash = 'my-capsules';
+    }
     if (path === 'sign-in' || path === 'sign-up') {
       return <AuthForm onSignIn={this.handleSignIn}/>;
     }
-    if (path === 'home' || path === '') {
+    if (path === 'my-capsules' || path === '') {
       return <Home />;
     }
     if (path === 'create') {

@@ -15,10 +15,10 @@ export default class Navbar extends React.Component {
   render() {
     let links;
     const { path } = this.context.route;
-    if (path === 'home' || path === '') {
+    if (path === 'my-capsules') {
       links = <a href="#sign-in" onClick={this.handleClick}>Sign Out</a>;
     } else if (path === 'create') {
-      links = <a href="#home">Home</a>;
+      links = <a href="#my-capsules">Home</a>;
     }
     return (
       <nav>
