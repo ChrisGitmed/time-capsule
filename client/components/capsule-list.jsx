@@ -34,11 +34,20 @@ export default class CapsuleList extends React.Component {
         recipient,
         type
       } = capsule;
-      let icon;
-      if (type === 'image/png') {
-        icon = <span className="lnr lnr-camera file-type-icon flavor-text"></span>;
+      const typeArray = type.split('/');
+      let classString;
+      if (typeArray[0] === 'image') {
+        classString = 'lnr lnr-picture file-type-icon flavor-text';
+      } else if (typeArray[0] === 'text') {
+        classString = 'lnr lnr-text-size file-type-icon flavor-text';
+      } else if (typeArray[0] === 'video') {
+        classString = 'lnr lnr-camera-video file-type-icon flavor-text';
+      } else if (typeArray[0] === 'audio') {
+        classString = 'lnr lnr-volume-high file-type-icon flavor-text';
+      } else if (typeArray[0] === 'application') {
+        classString = 'lnr lnr-file-empty file-type-icon flavor-text';
       }
-      // if type = mp4/gif/????
+      const icon = <span className={classString}></span>;
       return (
         <li className="form-container" key={capsule.capsuleId}>
           <div className="row justify-center">{icon}</div>
