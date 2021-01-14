@@ -85,6 +85,7 @@ a:hover {
 .form-container {
   display: flex;
   flex-wrap: wrap;
+  max-width: 500px;
   justify-content: center;
   margin: auto;
   margin-bottom: 3rem;
