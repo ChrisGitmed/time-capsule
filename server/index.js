@@ -125,6 +125,7 @@ app.get('/api/capsules', (req, res, next) => {
     select *
       from capsules
      where "userId" = $1
+  order by "sendOn"
   `;
   const params = [userId];
   db.query(sql, params)
