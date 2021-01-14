@@ -144,6 +144,11 @@ a:hover {
   padding-top: 1rem;
 }
 
+.file-type-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
 .pad-right {
   padding-right: 0.4rem;
 }
@@ -208,6 +213,11 @@ a:hover {
 .row {
   width: 100%;
   display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .wrap {
