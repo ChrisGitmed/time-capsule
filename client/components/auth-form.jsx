@@ -13,19 +13,7 @@ export default class AuthForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSignUpClick = this.handleSignUpClick.bind(this);
-    this.handleSignInClick = this.handleSignInClick.bind(this);
-  }
-
-  handleSignUpClick(event) {
-    window.location.hash = 'sign-up';
-    this.setState({
-      message: ''
-    });
-  }
-
-  handleSignInClick(event) {
-    window.location.hash = 'sign-in';
+    this.handleHashChangeClick = this.handleHashChangeClick.bind(this);
   }
 
   handleSubmit(event) {
@@ -62,7 +50,7 @@ export default class AuthForm extends React.Component {
           }
           if (result.user && result.token) {
             this.props.onSignIn(result);
-            window.location.hash = 'home';
+            window.location.hash = 'my-capsules';
           }
         })
         .catch(err => {
@@ -82,13 +70,18 @@ export default class AuthForm extends React.Component {
     });
   }
 
+  handleHashChangeClick(event) {
+    this.setState({
+      message: ''
+    });
+  }
+
   render() {
     const {
       handleSubmit,
       handleUsernameChange,
       handlePasswordChange,
-      handleSignUpClick,
-      handleSignInClick
+      handleHashChangeClick
     } = this;
 
     const {
@@ -98,12 +91,25 @@ export default class AuthForm extends React.Component {
     } = this.state;
 
     const { user } = this.context;
+    const { path } = this.context.route;
+
     if (user) return <Redirect to=""/>;
+
+    let button = <button className="sign-in-button" >Sign In</button>;
+    if (path === 'sign-up') {
+      button = <button className="sign-up-button" >Sign Up</button>;
+    }
+
+    let link = <a href="#sign-up" className="auth-link" onClick={handleHashChangeClick}>Sign-up</a>;
+    if (path === 'sign-up') {
+      link = <a href="#sign-in" className="auth-link" onClick={handleHashChangeClick}>Sign-In</a>;
+    }
 
     let hiddenText = <em className="error-text">{message}</em>;
     if (message === 'success') {
       hiddenText = <em className="success-text">Sign-up successful.</em>;
     }
+
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-container auth-form">
@@ -119,9 +125,9 @@ export default class AuthForm extends React.Component {
             <div className="row placeholder justify-center">
               {hiddenText}
             </div>
-            <div className="row justify-space-around">
-              <button className="sign-in-button" onClick={handleSignInClick}>Sign In</button>
-              <button className="sign-up-button" onClick={handleSignUpClick}>Sign Up</button>
+            <div className="row justify-flex-end align-center">
+              {link}
+              {button}
             </div>
           </div>
         </div>

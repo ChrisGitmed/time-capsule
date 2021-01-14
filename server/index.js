@@ -139,17 +139,21 @@ app.post('/api/uploads', upload.single('file'), (req, res, next) => {
     recipient,
     sendOn
   } = req.body;
-  const { location } = req.file;
+  const {
+    location,
+    mimetype
+  } = req.file;
   const { userId } = req.user;
   const sql = `
-    insert into "capsules" (recipient, content, "sendOn", "userId")
+    insert into "capsules" (recipient, content, "sendOn", "userId", type)
          values ($1,
                  $2,
                  $3,
-                 $4)
+                 $4,
+                 $5)
       returning *;
   `;
-  const params = [recipient, location, sendOn, userId];
+  const params = [recipient, location, sendOn, userId, mimetype];
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);

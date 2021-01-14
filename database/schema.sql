@@ -11,6 +11,7 @@ CREATE TABLE "capsules" (
 	"recipient" TEXT NOT NULL,
 	"content" TEXT NOT NULL,
 	"sendOn" timestamp with time zone NOT NULL,
+	"type" text not null,
 	"sentAt" timestamp with time zone,
 	"isDownloaded" bool,
 	"userId" int ,
