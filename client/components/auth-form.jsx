@@ -6,8 +6,8 @@ export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: 'DemoUser',
+      password: 'password1!A',
       message: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -100,7 +100,7 @@ export default class AuthForm extends React.Component {
       button = <button className="sign-up-button" >Sign Up</button>;
     }
 
-    let link = <a href="#sign-up" className="auth-link" onClick={handleHashChangeClick}>Sign-up</a>;
+    let link = <a href="#sign-in" className="auth-link" onClick={handleHashChangeClick}>Sign-up</a>;
     if (path === 'sign-up') {
       link = <a href="#sign-in" className="auth-link" onClick={handleHashChangeClick}>Sign-In</a>;
     }
@@ -115,11 +115,11 @@ export default class AuthForm extends React.Component {
         <div className="form-container auth-form">
           <div className="row align-center">
             <label className="pad-right username-label" htmlFor="username">Username: </label>
-            <input required className="input-box" type="text" name="username" autoComplete="username" onChange={handleUsernameChange} value={username} />
+            <input required disabled className="input-box" type="text" name="username" autoComplete="username" onChange={handleUsernameChange} value={username} />
           </div>
           <div className="row align-center">
             <label className="pad-right password-label" htmlFor="password">Password: </label>
-            <input required className="input-box" type="password" autoComplete="current-password" onChange={handlePasswordChange} value={password}/>
+            <input required disabled className="input-box" type="password" autoComplete="current-password" onChange={handlePasswordChange} value={password}/>
           </div>
           <div className="row align-center justify-space-between wrap unwrap-if-large">
             <div className="row placeholder justify-center">
