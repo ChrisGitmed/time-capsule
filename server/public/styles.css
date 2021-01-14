@@ -85,7 +85,7 @@ a:hover {
 .form-container {
   display: flex;
   flex-wrap: wrap;
-  max-width: 500px;
+  max-width: 550px;
   justify-content: center;
   margin: auto;
   margin-bottom: 3rem;
@@ -147,7 +147,6 @@ a:hover {
 
 .file-type-icon {
   font-size: 2rem;
-  margin-bottom: 1rem;
 }
 
 .pad-right {
@@ -211,6 +210,10 @@ a:hover {
   padding-bottom: 1rem;
 }
 
+.pad-top {
+  padding-top: 1rem;
+}
+
 .row {
   width: 100%;
   display: flex;
@@ -258,6 +261,15 @@ a:hover {
 
     .unwrap-if-large {
       flex-wrap: nowrap;
+    }
+
+    .remove-pad-top-if-large {
+      padding-top: 0;
+    }
+
+    .file-type-icon {
+      position: relative;
+      right: 1rem;
     }
   }
 }

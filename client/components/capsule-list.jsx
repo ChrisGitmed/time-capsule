@@ -50,13 +50,15 @@ export default class CapsuleList extends React.Component {
       const icon = <span className={classString}></span>;
       return (
         <li className="form-container" key={capsule.capsuleId}>
-          <div className="row justify-center">{icon}</div>
-          <div className="row wrap unwrap-if-larger">
-            <p className="row pad-bottom justify-center">Capsule ID: <span className="flavor-text">{capsuleId}</span></p>
-            <p className="row pad-bottom justify-center">Recipient: <span className="flavor-text">{recipient}</span></p>
-          </div>
-          <div className="row wrap unwrap-if-larger ">
-            <p className="row pad-bottom justify-center">Send on: <span className="flavor-text">{sendString}</span></p>
+          <div className="row wrap unwrap-if-large align-center justify-space-between">
+            <div className="row justify-center">
+              {icon}
+            </div>
+            <div className="row wrap">
+              <p className="row pad-top remove-pad-top-if-large">Capsule ID: <span className="flavor-text">{capsuleId}</span></p>
+              <p className="row pad-bottom pad-top">Recipient: <span className="flavor-text">{recipient}</span></p>
+              <p className="row">Send on: <span className="flavor-text">{sendString}</span></p>
+            </div>
           </div>
         </li>
       );
