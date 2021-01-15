@@ -26,6 +26,13 @@ export default class CapsuleList extends React.Component {
 
   render() {
     const { capsuleList } = this.state;
+    if (capsuleList.length === 0) {
+      return (
+        <div className="row justify-center">
+          <p className="no-capsules-text">No time capsules pending.</p>
+        </div>
+      );
+    }
     const listItems = capsuleList.map(capsule => {
       const date = new Date(capsule.sendOn);
       const sendString = new Intl.DateTimeFormat('en-US', { dateStyle: 'short', timeStyle: 'short' }).format(date);
