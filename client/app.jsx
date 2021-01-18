@@ -60,7 +60,6 @@ export default class App extends React.Component {
     if (path === 'download') {
       return <DownloadPage />;
     } else return <AuthForm onSignIn={this.handleSignIn} />;
-    // return <AuthForm onSignIn={this.handleSignIn}/>;
   }
 
   render() {
