@@ -6,6 +6,7 @@ import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
 import AuthForm from './components/auth-form';
 import Home from './pages/home';
+import DownloadPage from './pages/download';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,7 +43,8 @@ export default class App extends React.Component {
   }
 
   renderPage() {
-    const { path } = this.state.route;
+    let { path } = this.state.route;
+    path = path.split('/')[0];
     if (path === '') {
       window.location.hash = 'my-capsules';
     }
@@ -55,7 +57,9 @@ export default class App extends React.Component {
     if (path === 'create') {
       return <CapsuleCreationForm />;
     }
-    return <AuthForm onSignIn={this.handleSignIn}/>;
+    if (path === 'download') {
+      return <DownloadPage />;
+    } else return <AuthForm onSignIn={this.handleSignIn} />;
   }
 
   render() {

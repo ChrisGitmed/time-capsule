@@ -55,7 +55,7 @@ app.get('/api/download/:capsuleId', (req, res, next) => {
       const bucketParams = { Bucket: 'lfztimecapsule', Key: key };
       s3.getSignedUrlPromise('getObject', bucketParams)
         .then(url => {
-          res.redirect(303, url);
+          res.json({ url });
         })
         .catch(err => next(err));
     })

@@ -19,7 +19,7 @@ export default class Home extends React.Component {
     return (
     <>
       <div className="row justify-center">
-        <button className="create-button"onClick={handleClick}>Create</button>
+        <button className="create-button big-button"onClick={handleClick}>Create</button>
       </div>
       <CapsuleList />
     </>
