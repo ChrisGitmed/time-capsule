@@ -6,6 +6,7 @@ import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
 import AuthForm from './components/auth-form';
 import Home from './pages/home';
+import DownloadPage from './pages/download';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -54,6 +55,10 @@ export default class App extends React.Component {
     }
     if (path === 'create') {
       return <CapsuleCreationForm />;
+    }
+    const pathArray = path.split('/');
+    if (pathArray[pathArray.length - 2] === 'download') {
+      return <DownloadPage />;
     }
     return <AuthForm onSignIn={this.handleSignIn}/>;
   }
