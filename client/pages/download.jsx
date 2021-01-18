@@ -3,10 +3,10 @@ import React from 'react';
 export default class DownloadPage extends React.Component {
   constructor(props) {
     super(props);
-    this.handleDownloadClick = this.handleDownloadClick.bind(this);
+    this.handleDownload = this.handleDownload.bind(this);
   }
 
-  handleDownloadClick(event) {
+  handleDownload(event) {
     event.preventDefault();
     const fullPathArray = window.location.hash.split('/');
     const capsuleId = fullPathArray[fullPathArray.length - 1];
@@ -30,10 +30,15 @@ export default class DownloadPage extends React.Component {
   }
 
   render() {
-    const { handleDownloadClick } = this;
+    const { handleDownload } = this;
     return (
-      <div className="row justify-center">
-        <button onClick={handleDownloadClick}>Download</button>
+      <div className="form-container">
+        <div className="row justify-center pad-bottom">
+          <p>Click to start your download.</p>
+        </div>
+        <div className="row justify-center">
+          <span className="lnr lnr-download download-icon" onClick={handleDownload}></span>
+        </div>
       </div>
     );
   }

@@ -14,10 +14,11 @@ export default class Navbar extends React.Component {
 
   render() {
     let links;
-    const { path } = this.context.route;
+    let { path } = this.context.route;
+    path = path.split('/')[0];
     if (path === 'my-capsules') {
       links = <a href="#sign-in" onClick={this.handleClick}>Sign Out</a>;
-    } else if (path === 'create') {
+    } else if (path === 'create' || path === 'download') {
       links = <a href="#my-capsules">Home</a>;
     }
     return (

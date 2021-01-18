@@ -155,12 +155,15 @@ a:hover {
 
 .submit-button,
 .create-button {
+  margin-bottom: 2rem;
+}
+
+.big-button {
   width: 8rem;
   height: 2rem;
   border-radius: 10px;
   font-size: 1rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
-  margin-bottom: 2rem;
 }
 
 .sign-in-button,
@@ -198,6 +201,21 @@ a:hover {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
 }
 
+.download-icon {
+  font-size: 2rem;
+  background-color: #bfdbf7;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.download-icon:hover {
+  color: #e1e5f2;
+  background-color: #1f7a8c;
+  transition: 0.2s;
+}
+
 .placeholder {
   min-height: 0.9rem;
 }
@@ -212,6 +230,10 @@ a:hover {
 
 .success-text {
   color: darkgreen;
+}
+
+.drop-shadow {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 25%));
 }
 
 .pad-bottom {
