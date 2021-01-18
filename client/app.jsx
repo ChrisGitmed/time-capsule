@@ -43,7 +43,8 @@ export default class App extends React.Component {
   }
 
   renderPage() {
-    const { path } = this.state.route;
+    let { path } = this.state.route;
+    path = path.split('/')[0];
     if (path === '') {
       window.location.hash = 'my-capsules';
     }
@@ -56,11 +57,10 @@ export default class App extends React.Component {
     if (path === 'create') {
       return <CapsuleCreationForm />;
     }
-    const pathArray = path.split('/');
-    if (pathArray[pathArray.length - 2] === 'download') {
+    if (path === 'download') {
       return <DownloadPage />;
-    }
-    return <AuthForm onSignIn={this.handleSignIn}/>;
+    } else return <AuthForm onSignIn={this.handleSignIn} />;
+    // return <AuthForm onSignIn={this.handleSignIn}/>;
   }
 
   render() {
