@@ -36,7 +36,6 @@ export default class CapsuleList extends React.Component {
     const listItems = capsuleList.map(capsule => {
       const date = new Date(capsule.sendOn);
       const currentDate = new Date().getTime();
-
       let sendOnOrSent = 'Send On:';
       if (date < currentDate) {
         sendOnOrSent = 'Sent:';
