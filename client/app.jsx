@@ -48,9 +48,6 @@ export default class App extends React.Component {
     if (path === '') {
       window.location.hash = 'my-capsules';
     }
-    if (path === 'sign-in' || path === 'sign-up') {
-      return <AuthForm onSignIn={this.handleSignIn}/>;
-    }
     if (path === 'my-capsules' || path === '') {
       return <Home />;
     }
@@ -59,7 +56,14 @@ export default class App extends React.Component {
     }
     if (path === 'download') {
       return <DownloadPage />;
-    } else return <AuthForm onSignIn={this.handleSignIn} />;
+    } else {
+      window.location.hash = 'sign-in';
+      return (<>
+                <AuthForm onSignIn={this.handleSignIn} />
+                <h1>Boo!</h1>
+              </>
+      );
+    }
   }
 
   render() {
