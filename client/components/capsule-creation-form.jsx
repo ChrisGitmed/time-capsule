@@ -127,7 +127,7 @@ export default class CapsuleCreationForm extends React.Component {
           </div>
         </div>
         <div className="row justify-center">
-          <button className="submit-button big-button">Submit</button>
+          <button className="submit-button big-button">Seal the time capsule</button>
         </div>
       </form>
     );
