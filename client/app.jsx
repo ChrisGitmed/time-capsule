@@ -5,6 +5,7 @@ import decodeToken from './lib/decode-token';
 import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
 import AuthForm from './components/auth-form';
+import Hook from './components/hook';
 import Home from './pages/home';
 import DownloadPage from './pages/download';
 
@@ -60,7 +61,7 @@ export default class App extends React.Component {
       window.location.hash = 'sign-in';
       return (<>
                 <AuthForm onSignIn={this.handleSignIn} />
-                <h1>Boo!</h1>
+                <Hook />
               </>
       );
     }
