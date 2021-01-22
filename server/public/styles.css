@@ -8,6 +8,10 @@ em {
   margin: 0;
 }
 
+h3 {
+  font-family: 'Proza Libre', sans-serif;
+}
+
 em {
   font-size: 0.65rem;
   font-family: 'Open Sans', sans-serif;
@@ -65,13 +69,19 @@ a {
   transition: 0.2s;
 }
 
+a:hover {
+  color: #bfdbf7;
+  transition: 0.2s;
+}
+
 input {
   text-align: left;
 }
 
-a:hover {
-  color: #bfdbf7;
-  transition: 0.2s;
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .page-container {
@@ -159,7 +169,7 @@ a:hover {
 }
 
 .big-button {
-  width: 8rem;
+  padding: 0 0.5rem;
   height: 2rem;
   border-radius: 10px;
   font-size: 1rem;
@@ -240,8 +250,16 @@ a:hover {
   padding-bottom: 1rem;
 }
 
+.extra-pad-bottom {
+  padding-bottom: 2rem;
+}
+
 .pad-top {
   padding-top: 1rem;
+}
+
+.remove-pad {
+  padding: 0;
 }
 
 .row {

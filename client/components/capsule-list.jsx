@@ -35,6 +35,11 @@ export default class CapsuleList extends React.Component {
     }
     const listItems = capsuleList.map(capsule => {
       const date = new Date(capsule.sendOn);
+      const currentDate = new Date().getTime();
+      let sendOnOrSent = 'Send On:';
+      if (date < currentDate) {
+        sendOnOrSent = 'Sent:';
+      }
       const sendString = new Intl.DateTimeFormat('en-US', { dateStyle: 'short', timeStyle: 'short' }).format(date);
       const {
         capsuleId,
@@ -64,7 +69,7 @@ export default class CapsuleList extends React.Component {
             <div className="row wrap">
               <p className="row pad-top remove-pad-top-if-large">Capsule ID: <span className="flavor-text">{capsuleId}</span></p>
               <p className="row pad-bottom pad-top">Recipient: <span className="flavor-text">{recipient}</span></p>
-              <p className="row">Send on: <span className="flavor-text">{sendString}</span></p>
+              <p className="row">{sendOnOrSent}<span className="flavor-text">{sendString}</span></p>
             </div>
           </div>
         </li>

@@ -5,6 +5,7 @@ import decodeToken from './lib/decode-token';
 import Navbar from './components/navbar';
 import CapsuleCreationForm from './components/capsule-creation-form';
 import AuthForm from './components/auth-form';
+import Hook from './components/hook';
 import Home from './pages/home';
 import DownloadPage from './pages/download';
 
@@ -48,9 +49,6 @@ export default class App extends React.Component {
     if (path === '') {
       window.location.hash = 'my-capsules';
     }
-    if (path === 'sign-in' || path === 'sign-up') {
-      return <AuthForm onSignIn={this.handleSignIn}/>;
-    }
     if (path === 'my-capsules' || path === '') {
       return <Home />;
     }
@@ -59,7 +57,14 @@ export default class App extends React.Component {
     }
     if (path === 'download') {
       return <DownloadPage />;
-    } else return <AuthForm onSignIn={this.handleSignIn} />;
+    } else {
+      window.location.hash = 'sign-in';
+      return (<>
+                <AuthForm onSignIn={this.handleSignIn} />
+                <Hook />
+              </>
+      );
+    }
   }
 
   render() {
