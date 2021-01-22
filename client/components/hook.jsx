@@ -28,7 +28,7 @@ export default class Hook extends React.Component {
         </article>
 
         <div className="row justify-center">
-          <img src="./images/time-capsule-portfolio-demo.gif" alt=""/>
+          <img src="./images/time-capsule-demo.gif" alt=""/>
         </div>
       </div>
     );
