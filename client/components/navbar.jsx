@@ -8,6 +8,7 @@ export default function Navbar(props) {
     props.onSignOut();
     window.location.hash = '';
   }
+
   let link;
   const { path } = context.route;
   if (path === 'my-capsules') {
