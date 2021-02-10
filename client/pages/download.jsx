@@ -1,12 +1,8 @@
 import React from 'react';
 
-export default class DownloadPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDownload = this.handleDownload.bind(this);
-  }
+export default function DownloadPage() {
 
-  handleDownload(event) {
+  function handleDownload(event) {
     event.preventDefault();
     const fullPathArray = window.location.hash.split('/');
     const capsuleId = fullPathArray[fullPathArray.length - 1];
@@ -29,17 +25,14 @@ export default class DownloadPage extends React.Component {
       });
   }
 
-  render() {
-    const { handleDownload } = this;
-    return (
-      <div className="form-container">
-        <div className="row justify-center pad-bottom">
-          <p>Click to start your download.</p>
-        </div>
-        <div className="row justify-center">
-          <span className="lnr lnr-download download-icon" onClick={handleDownload}></span>
-        </div>
+  return (
+    <div className="form-container">
+      <div className="row justify-center pad-bottom">
+        <p>Click to start your download.</p>
       </div>
-    );
-  }
+      <div className="row justify-center">
+        <span className="lnr lnr-download download-icon" onClick={handleDownload}></span>
+      </div>
+    </div>
+  );
 }
