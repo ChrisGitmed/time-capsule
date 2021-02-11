@@ -1,8 +1,7 @@
 import React from 'react';
 
-export default class Hook extends React.Component {
-  render() {
-    return (
+export default function Hook() {
+  return (
       <div className="form-container">
         <article className="about-article">
           <header className="row justify-center">
@@ -31,6 +30,5 @@ export default class Hook extends React.Component {
           <img src="./images/time-capsule-demo.gif" alt=""/>
         </div>
       </div>
-    );
-  }
+  );
 }
