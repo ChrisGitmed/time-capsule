@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function CapsuleList() {
   const [capsuleList, setCapsuleList] = useState(0);
+
   useEffect(() => {
     const token = localStorage.getItem('time-capsule-jwt');
     const req = {
