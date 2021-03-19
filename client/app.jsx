@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import decodeToken from './lib/decode-token';
@@ -9,37 +9,47 @@ import Hook from './components/hook';
 import Home from './pages/home';
 import DownloadPage from './pages/download';
 
-export default function App() {
-  const [user, setUser] = useState(null);
-  const [route, setRoute] = useState(parseRoute(window.location.hash));
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      isAuthorizing: true,
+      route: parseRoute(window.location.hash)
+    };
+    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
 
-  useEffect(() => {
+  componentDidMount() {
     window.addEventListener('hashchange', () => {
-      setRoute(parseRoute(window.location.hash));
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
     });
     const token = window.localStorage.getItem('time-capsule-jwt');
     const user = token ? decodeToken(token) : null;
-    setUser(user);
-  }, []);
+    this.setState({ user, isAuthorizing: false });
+  }
 
-  function handleSignIn(result) {
+  handleSignIn(result) {
     const { user, token } = result;
     window.localStorage.setItem('time-capsule-jwt', token);
-    setUser(user);
+    this.setState({ user });
   }
 
-  function handleSignOut() {
+  handleSignOut() {
     window.localStorage.removeItem('time-capsule-jwt');
-    setUser(null);
+    this.setState({ user: null });
   }
 
-  function renderPage() {
-    let { path } = route;
+  renderPage() {
+    let { path } = this.state.route;
     path = path.split('/')[0];
     if (path === '') {
       window.location.hash = 'my-capsules';
     }
-    if (path === 'my-capsules') {
+    if (path === 'my-capsules' || path === '') {
       return <Home />;
     }
     if (path === 'create') {
@@ -50,20 +60,24 @@ export default function App() {
     } else {
       window.location.hash = 'sign-in';
       return (<>
-                <AuthForm onSignIn={handleSignIn} />
+                <AuthForm onSignIn={this.handleSignIn} />
                 <Hook />
               </>
       );
     }
   }
 
-  const contextValue = { user, route, handleSignIn, handleSignOut };
-  return (
-    <AppContext.Provider value={contextValue}>
-      <div className="page-container">
-        <Navbar onSignOut={handleSignOut} />
-        {renderPage()}
-      </div>
-    </AppContext.Provider>
-  );
+  render() {
+    const { user, route } = this.state;
+    const { handleSignIn, handleSignOut } = this;
+    const contextValue = { user, route, handleSignIn, handleSignOut };
+    return (
+      <AppContext.Provider value={contextValue}>
+        <div className="page-container">
+          <Navbar onSignOut={handleSignOut}/>
+          {this.renderPage()}
+        </div>
+      </AppContext.Provider>
+    );
+  }
 }
