@@ -4,8 +4,8 @@ export default function DownloadPage() {
 
   function handleDownload(event) {
     event.preventDefault();
-    const fullPathArray = window.location.hash.split('/');
-    const capsuleId = fullPathArray[fullPathArray.length - 1];
+    const pathArray = window.location.hash.split('/');
+    const capsuleId = pathArray[pathArray.length - 1];
     const req = {
       mode: 'no-cors'
     };
