@@ -57,8 +57,7 @@ export default function CapsuleCreationForm() {
 
   function handleDrop(event) {
     event.preventDefault();
-    if (event.dataTransfer.items &&
-      event.dataTransfer.items[0].kind === 'file') {
+    if (event.dataTransfer.items && event.dataTransfer.items[0].kind === 'file') {
       fileInput.current.files = event.dataTransfer.files;
       setFileName(fileInput.current.files[0].name);
     }
@@ -71,13 +70,6 @@ export default function CapsuleCreationForm() {
   function handleChange(event) {
     setFileName(fileInput.current.files[0].name);
   }
-
-  /*
-  let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
-  if (fileName !== '') {
-    dropZoneText = <p className="success-text">{fileName}</p>;
-  }
-  */
 
   const dropZoneText = (!fileName)
     ? <p>Click to upload a file, or drag and drop.</p>
