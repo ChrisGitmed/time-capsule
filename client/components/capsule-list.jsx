@@ -36,18 +36,23 @@ export default function CapsuleList() {
     } = capsule;
     const typeArray = type.split('/');
     let classString;
-    // Conver to a switch statement
-    if (typeArray[0] === 'image') {
-      classString = 'lnr lnr-picture file-type-icon flavor-text';
-    } else if (typeArray[0] === 'text') {
-      classString = 'lnr lnr-text-size file-type-icon flavor-text';
-    } else if (typeArray[0] === 'video') {
-      classString = 'lnr lnr-camera-video file-type-icon flavor-text';
-    } else if (typeArray[0] === 'audio') {
-      classString = 'lnr lnr-volume-high file-type-icon flavor-text';
-    } else if (typeArray[0] === 'application') {
-      classString = 'lnr lnr-file-empty file-type-icon flavor-text';
+    switch (typeArray[0]) {
+      case 'image':
+        classString = 'lnr lnr-picture file-type-icon flavor-text';
+        break;
+      case 'text':
+        classString = 'lnr lnr-text-size file-type-icon flavor-text';
+        break;
+      case 'video':
+        classString = 'lnr lnr-camera-video file-type-icon flavor-text';
+        break;
+      case 'audio':
+        classString = 'lnr lnr-volume-high file-type-icon flavor-text';
+        break;
+      default:
+        classString = 'lnr lnr-file-empty file-type-icon flavor-text';
     }
+
     const icon = <span className={classString}></span>;
     return (
       <li className="form-container" key={capsule.capsuleId}>
