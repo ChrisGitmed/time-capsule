@@ -1,22 +1,16 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Redirect from './redirect';
 import AppContext from '../lib/app-context';
 
-export default class CapsuleCreationForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fileName: ''
-    };
-    this.fileInput = React.createRef();
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleDragOver = this.handleDragOver.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+export default function CapsuleCreationForm() {
+  const [fileName, setFileName] = useState('');
+  const { user } = useContext(AppContext);
 
-  handleSubmit(event) {
+  if (!user) return <Redirect to="sign-in" />;
+
+  const fileInput = React.createRef();
+
+  function handleSubmit(event) {
     event.preventDefault();
     const token = localStorage.getItem('time-capsule-jwt');
     const form = new FormData(event.target);
@@ -47,9 +41,7 @@ export default class CapsuleCreationForm extends React.Component {
     fetch('/api/uploads', req)
       .then(
         event.target.reset(),
-        this.setState({
-          fileName: ''
-        })
+        setFileName('')
       )
       .then(res => {
         window.location.hash = 'my-capsules';
@@ -59,78 +51,55 @@ export default class CapsuleCreationForm extends React.Component {
       });
   }
 
-  handleClick(event) {
-    const fileInput = this.fileInput.current;
-    fileInput.click();
+  function handleClick(event) {
+    fileInput.current.click();
   }
 
-  handleDrop(event) {
+  function handleDrop(event) {
     event.preventDefault();
-    if (event.dataTransfer.items &&
-        event.dataTransfer.items[0].kind === 'file') {
-      const fileInput = this.fileInput.current;
-      fileInput.files = event.dataTransfer.files;
-      this.setState({
-        fileName: fileInput.files[0].name
-      });
+    if (event.dataTransfer.items && event.dataTransfer.items[0].kind === 'file') {
+      fileInput.current.files = event.dataTransfer.files;
+      setFileName(fileInput.current.files[0].name);
     }
   }
 
-  handleDragOver(event) {
+  function handleDragOver(event) {
     event.preventDefault();
   }
 
-  handleChange(event) {
-    const fileInput = this.fileInput.current;
-    this.setState({
-      fileName: fileInput.files[0].name
-    });
+  function handleChange(event) {
+    setFileName(fileInput.current.files[0].name);
   }
 
-  render() {
-    const {
-      handleSubmit,
-      handleDragOver,
-      handleDrop,
-      handleClick,
-      handleChange,
-      fileInput
-    } = this;
-    const { fileName } = this.state;
+  const dropZoneText = (!fileName)
+    ? <p>Click to upload a file, or drag and drop.</p>
+    : <p className="success-text">{fileName}</p>;
 
-    if (!this.context.user) return <Redirect to="sign-in" />;
-
-    let dropZoneText = <p>Click to upload a file, or drag and drop.</p>;
-    if (fileName !== '') {
-      dropZoneText = <p className="success-text">{fileName}</p>;
-    }
-    return (
-      <form onSubmit={handleSubmit}>
-        <div className="form-container">
-          <div className="row drop-zone input-box" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
-            {dropZoneText}
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="form-container">
+        <div className="row drop-zone input-box" onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver}>
+          {dropZoneText}
+        </div>
+        <input required ref={fileInput} className="hidden" type="file" name="file" onChange={handleChange} />
+        <div className="row recipient-section">
+          <label className="pad-right" htmlFor="recipient">Recipient:</label>
+          <input required className="input-box" type="email" name="recipient" placeholder="john@example.com" />
+        </div>
+        <div className="date-time-row justify-space-between unwrap-if-large">
+          <div className="date-section">
+            <label className="date-label pad-right" htmlFor="date">Date: </label>
+            <input required className="input-box" type="date" name="date" />
           </div>
-          <input required ref={fileInput} className="hidden" type="file" name="file" onChange={handleChange}/>
-          <div className="row recipient-section">
-            <label className="pad-right" htmlFor="recipient">Recipient:</label>
-            <input required className="input-box" type="email" name="recipient" placeholder="john@example.com"/>
-          </div>
-          <div className="date-time-row justify-space-between unwrap-if-large">
-            <div className="date-section">
-              <label className="date-label pad-right" htmlFor="date">Date: </label>
-              <input required className="input-box" type="date" name="date"/>
-            </div>
-            <div className="time-section">
-              <label className="time-label pad-right" htmlFor="time">Time: </label>
-              <input required className="input-box" type="time" name="time" />
-            </div>
+          <div className="time-section">
+            <label className="time-label pad-right" htmlFor="time">Time: </label>
+            <input required className="input-box" type="time" name="time" />
           </div>
         </div>
-        <div className="row justify-center">
-          <button className="submit-button big-button">Seal the time capsule</button>
-        </div>
-      </form>
-    );
-  }
+      </div>
+      <div className="row justify-center">
+        <button className="submit-button big-button">Seal the time capsule</button>
+      </div>
+    </form>
+  );
 }
-CapsuleCreationForm.contextType = AppContext;

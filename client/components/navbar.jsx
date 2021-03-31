@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AppContext from '../lib/app-context';
 
-export default class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+export default function Navbar() {
+  const context = useContext(AppContext);
+  const { route, handleSignOut } = context;
+  let { path } = route;
 
-  handleClick(event) {
-    this.props.onSignOut();
+  function handleClick(event) {
+    handleSignOut();
     window.location.hash = '';
   }
 
-  render() {
-    let links;
-    let { path } = this.context.route;
-    path = path.split('/')[0];
-    if (path === 'my-capsules') {
-      links = <a href="#sign-in" onClick={this.handleClick}>Sign Out</a>;
-    } else if (path === 'create' || path === 'download') {
-      links = <a href="#my-capsules">Home</a>;
-    }
-    return (
-      <nav>
-        <h1>
-          Time Capsule
-        </h1>
-        {links}
-      </nav>
-    );
+  let link;
+  path = path.split('/')[0];
+  if (path === 'my-capsules') {
+    link = <a href="#sign-in" onClick={handleClick}>Sign Out</a>;
+  } else if (path === 'create' || path === 'download') {
+    link = <a href="#my-capsules">Home</a>;
   }
 
+  return (
+  <nav>
+    <h1>
+      Time Capsule
+    </h1>
+    {link}
+  </nav>);
 }
-Navbar.contextType = AppContext;
