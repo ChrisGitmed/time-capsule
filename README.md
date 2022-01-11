@@ -15,7 +15,7 @@ A full stack JavaScript solo project created for users to send files across time
 * Multer/MulterS3
 
 ## Live Demo
-Try the application live at https://lfz-time-capsule.herokuapp.com
+Live app has been taken down for now.
 
 ## Features
 * Users can upload their files (capsules) to the cloud.
